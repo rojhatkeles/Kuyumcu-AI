@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Tex
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from .database import Base
+from datetime import datetime
 
 class Margin(Base):
     __tablename__ = "margins"
@@ -48,7 +49,12 @@ class Product(Base):
     stock_qty = Column(Integer, default=1)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
-from datetime import datetime
+class Vault(Base):
+    __tablename__ = "vault"
+    id = Column(Integer, primary_key=True, index=True)
+    symbol = Column(String, unique=True, index=True) # "TRY", "USD", "EUR", "GA"
+    balance = Column(Float, default=0.0)
+    last_updated = Column(DateTime, onupdate=datetime.now, default=datetime.now)
 
 class Transaction(Base):
     __tablename__ = "transactions"
@@ -56,12 +62,15 @@ class Transaction(Base):
     instrument_id = Column(Integer, ForeignKey("instruments.id"), nullable=True)
     customer_id = Column(Integer, ForeignKey("customers.id"), nullable=True)
     product_id = Column(Integer, ForeignKey("products.id"), nullable=True)
-    side = Column(String)  # "buy" | "sell"
+    side = Column(String)  # "buy" | "sell" | "initial"
     symbol = Column(String, nullable=True) # "GA", "USD" vb.
     qty = Column(Float) # Miktar (Gram veya Adet)
     unit_price = Column(Float)
     total_price = Column(Float)
+    payment_type = Column(String, default="Cash")  # Cash, Debt vb.
+    net_try = Column(Float, default=0.0) # Borç/Alacak için yansıyan net TL
     ts = Column(DateTime, default=datetime.now)
+
     
     instrument = relationship("Instrument")
     customer = relationship("Customer", back_populates="transactions")

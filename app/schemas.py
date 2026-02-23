@@ -47,12 +47,13 @@ class ProductBase(BaseModel):
     name: str
     category: str
     weight: float
-    purity: float
+    purity: float = 0.916 # Varsayılan 22 Ayar
     labor_cost: float = 0.0
     stock_qty: int = 1
 
 class ProductCreate(ProductBase):
     pass
+
 
 class ProductOut(ProductBase):
     id: int
@@ -69,6 +70,9 @@ class TransactionBase(BaseModel):
     symbol: Optional[str] = None
     customer_id: Optional[int] = None
     product_id: Optional[int] = None
+    payment_type: Optional[str] = "Cash" # 'Cash' veya 'Debt'
+    net_try: Optional[float] = 0.0 # İşlemden doğan net TL (Borç/Alacak için)
+
 
 class TransactionCreate(TransactionBase):
     pass
