@@ -1,0 +1,1111 @@
+INFO:     Will watch for changes in these directories: ['/Users/rojhat/PycharmProjects/kuyumcudemo']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [42551] using WatchFiles
+INFO:     Started server process [42599]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:49654 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50237 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50241 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50243 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50245 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50246 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50250 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50252 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50272 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50285 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50325 - "POST /transactions HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: table transactions has no column named payment_type
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/applications.py", line 1106, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 274, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 193, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/anyio/to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/app/main.py", line 180, in add_tx
+    db.commit()
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1969, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1256, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1231, in _prepare_impl
+    self.session.flush()
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4312, in flush
+    self._flush(objects)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4447, in _flush
+    with util.safe_reraise():
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4408, in _flush
+    flush_context.execute()
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 1226, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) table transactions has no column named payment_type
+[SQL: INSERT INTO transactions (instrument_id, customer_id, product_id, side, symbol, qty, unit_price, total_price, payment_type, net_try, ts) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (None, None, 3, 'sell', 'ÜRÜN', 1.0, 55966.46, 55966.46, 'Cash', 0.0, '2026-02-23 03:31:14.013851')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:50336 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50338 - "GET /reports/pnl HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: transactions.payment_type
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/applications.py", line 1106, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 274, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/app/main.py", line 236, in get_pnl
+    txs, cur = db.query(models.Transaction).all(), await fetch_prices_async()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2693, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2847, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2308, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2190, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: transactions.payment_type
+[SQL: SELECT transactions.id AS transactions_id, transactions.instrument_id AS transactions_instrument_id, transactions.customer_id AS transactions_customer_id, transactions.product_id AS transactions_product_id, transactions.side AS transactions_side, transactions.symbol AS transactions_symbol, transactions.qty AS transactions_qty, transactions.unit_price AS transactions_unit_price, transactions.total_price AS transactions_total_price, transactions.payment_type AS transactions_payment_type, transactions.net_try AS transactions_net_try, transactions.ts AS transactions_ts 
+FROM transactions]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:50339 - "GET /vault HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50340 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50341 - "GET /transactions HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: transactions.payment_type
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/applications.py", line 1106, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 274, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 193, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/anyio/to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/app/main.py", line 187, in list_tx
+    return db.query(models.Transaction).order_by(models.Transaction.ts.desc()).all()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2693, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2847, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2308, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2190, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: transactions.payment_type
+[SQL: SELECT transactions.id AS transactions_id, transactions.instrument_id AS transactions_instrument_id, transactions.customer_id AS transactions_customer_id, transactions.product_id AS transactions_product_id, transactions.side AS transactions_side, transactions.symbol AS transactions_symbol, transactions.qty AS transactions_qty, transactions.unit_price AS transactions_unit_price, transactions.total_price AS transactions_total_price, transactions.payment_type AS transactions_payment_type, transactions.net_try AS transactions_net_try, transactions.ts AS transactions_ts 
+FROM transactions ORDER BY transactions.ts DESC]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:50342 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50373 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50388 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50390 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50394 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50415 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50417 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50419 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50444 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50457 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50483 - "POST /transactions HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: table transactions has no column named payment_type
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/applications.py", line 1106, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 274, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 193, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/anyio/to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/app/main.py", line 180, in add_tx
+    db.commit()
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1969, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1256, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1231, in _prepare_impl
+    self.session.flush()
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4312, in flush
+    self._flush(objects)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4447, in _flush
+    with util.safe_reraise():
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4408, in _flush
+    flush_context.execute()
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 1226, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) table transactions has no column named payment_type
+[SQL: INSERT INTO transactions (instrument_id, customer_id, product_id, side, symbol, qty, unit_price, total_price, payment_type, net_try, ts) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (None, None, 3, 'sell', 'ÜRÜN', 1.0, 55966.46, 55966.46, 'Cash', 0.0, '2026-02-23 03:31:30.754742')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:50494 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50498 - "GET /reports/pnl HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: transactions.payment_type
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/applications.py", line 1106, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 274, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/app/main.py", line 236, in get_pnl
+    txs, cur = db.query(models.Transaction).all(), await fetch_prices_async()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2693, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2847, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2308, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2190, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: transactions.payment_type
+[SQL: SELECT transactions.id AS transactions_id, transactions.instrument_id AS transactions_instrument_id, transactions.customer_id AS transactions_customer_id, transactions.product_id AS transactions_product_id, transactions.side AS transactions_side, transactions.symbol AS transactions_symbol, transactions.qty AS transactions_qty, transactions.unit_price AS transactions_unit_price, transactions.total_price AS transactions_total_price, transactions.payment_type AS transactions_payment_type, transactions.net_try AS transactions_net_try, transactions.ts AS transactions_ts 
+FROM transactions]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:50499 - "GET /vault HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50500 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50501 - "GET /transactions HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: transactions.payment_type
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 426, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/applications.py", line 1106, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 274, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 193, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/anyio/to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/app/main.py", line 187, in list_tx
+    return db.query(models.Transaction).order_by(models.Transaction.ts.desc()).all()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2693, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2847, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2308, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2190, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/rojhat/PycharmProjects/kuyumcudemo/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: transactions.payment_type
+[SQL: SELECT transactions.id AS transactions_id, transactions.instrument_id AS transactions_instrument_id, transactions.customer_id AS transactions_customer_id, transactions.product_id AS transactions_product_id, transactions.side AS transactions_side, transactions.symbol AS transactions_symbol, transactions.qty AS transactions_qty, transactions.unit_price AS transactions_unit_price, transactions.total_price AS transactions_total_price, transactions.payment_type AS transactions_payment_type, transactions.net_try AS transactions_net_try, transactions.ts AS transactions_ts 
+FROM transactions ORDER BY transactions.ts DESC]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:     127.0.0.1:50502 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50531 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50535 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50537 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50666 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50668 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50670 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50792 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50796 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50798 - "GET /ai/suggestions HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'fix_db.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [42599]
+INFO:     Started server process [44026]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:50926 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50928 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50930 - "GET /ai/suggestions HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'fix_db.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [44026]
+INFO:     Started server process [44041]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:51056 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51060 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51062 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51173 - "GET /transactions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51188 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51192 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51194 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51277 - "GET /reports/pnl HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51319 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51321 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51325 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51448 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51452 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51454 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51640 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51642 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51644 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51648 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51649 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51651 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51655 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51675 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51690 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51722 - "POST /transactions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51733 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51737 - "GET /reports/pnl HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51739 - "GET /vault HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51740 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51741 - "GET /transactions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51742 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51755 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51781 - "GET /vault HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51782 - "GET /transactions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51791 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51795 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51797 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51866 - "GET /vault HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51867 - "GET /transactions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51875 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51885 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51894 - "GET /settings/margins HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51902 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51931 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51933 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51935 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51947 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51949 - "GET /reports/pnl HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52062 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52064 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52068 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52194 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52198 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52200 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52322 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52324 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52328 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52451 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52455 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52457 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52581 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52583 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52585 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52713 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52715 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52719 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52840 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52844 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52846 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52970 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52972 - "GET /reports/kasa HTTP/1.1" 200 OK
+Error fetching prices: 
+INFO:     127.0.0.1:52976 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53097 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53101 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53103 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53229 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53231 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53235 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53355 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53359 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53361 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53486 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53488 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53490 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53613 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53615 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53619 - "GET /ai/suggestions HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in '.venv/lib/python3.12/site-packages/numpy/_typing/_nbit.py', '.venv/lib/python3.12/site-packages/PIL/ImageMorph.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/comparisons.py', '.venv/lib/python3.12/site-packages/numpy/ma/tests/__init__.py', '.venv/lib/python3.12/site-packages/PIL/GimpPaletteFile.py', '.venv/lib/python3.12/site-packages/numpy/lib/_nanfunctions_impl.py', '.venv/lib/python3.12/site-packages/PIL/_deprecate.py', '.venv/lib/python3.12/site-packages/numpy/lib/recfunctions.py', '.venv/lib/python3.12/site-packages/numpy/f2py/__main__.py', '.venv/lib/python3.12/site-packages/numpy/lib/_type_check_impl.py', '.venv/lib/python3.12/site-packages/PIL/PngImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_indexerrors.py', '.venv/lib/python3.12/site-packages/PIL/EpsImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/modules.py', '.venv/lib/python3.12/site-packages/PIL/XVThumbImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/f2py/_backends/__init__.py', '.venv/lib/python3.12/site-packages/dateutil/parser/__init__.py', '.venv/lib/python3.12/site-packages/numpy/_core/_asarray.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_recfunctions.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/examples/limited_api/setup.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_longdouble.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/flatiter.py', '.venv/lib/python3.12/site-packages/numpy/lib/mixins.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_cpu_dispatcher.py', '.venv/lib/python3.12/site-packages/PIL/ImageWin.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/dtype.py', '.venv/lib/python3.12/site-packages/numpy/tests/test_reloading.py', '.venv/lib/python3.12/site-packages/numpy/__init__.py', '.venv/lib/python3.12/site-packages/pyparsing/testing.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_mem_overlap.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/__init__.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/array_like.py', '.venv/lib/python3.12/site-packages/PIL/ImageGrab.py', '.venv/lib/python3.12/site-packages/numpy/core/_dtype_ctypes.py', '.venv/lib/python3.12/site-packages/pyparsing/tools/cvt_pyparsing_pep8_names.py', '.venv/lib/python3.12/site-packages/numpy/core/_internal.py', '.venv/lib/python3.12/site-packages/numpy/matrixlib/tests/test_multiarray.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_arraypad.py', '.venv/lib/python3.12/site-packages/numpy/random/_examples/numba/extending_distributions.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_return_complex.py', '.venv/lib/python3.12/site-packages/numpy/ma/extras.py', '.venv/lib/python3.12/site-packages/PIL/ImageMath.py', '.venv/lib/python3.12/site-packages/numpy/random/tests/data/__init__.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_nditer.py', '.venv/lib/python3.12/site-packages/PIL/PpmImagePlugin.py', '.venv/lib/python3.12/site-packages/pyparsing/diagram/__init__.py', '.venv/lib/python3.12/site-packages/numpy/lib/_array_utils_impl.py', '.venv/lib/python3.12/site-packages/numpy/lib/format.py', '.venv/lib/python3.12/site-packages/numpy/_globals.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_type_check.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_half.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_casting_floatingpoint_errors.py', '.venv/lib/python3.12/site-packages/dateutil/tzwin.py', '.venv/lib/python3.12/site-packages/numpy/_core/_string_helpers.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_pyf_src.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_defchararray.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/array_constructors.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_custom_dtypes.py', '.venv/lib/python3.12/site-packages/numpy/testing/__init__.py', '.venv/lib/python3.12/site-packages/numpy/matrixlib/tests/test_regression.py', '.venv/lib/python3.12/site-packages/numpy/lib/_polynomial_impl.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/numerictypes.py', '.venv/lib/python3.12/site-packages/dateutil/easter.py', '.venv/lib/python3.12/site-packages/numpy/typing/mypy_plugin.py', '.venv/lib/python3.12/site-packages/numpy/linalg/_linalg.py', '.venv/lib/python3.12/site-packages/pyparsing/actions.py', '.venv/lib/python3.12/site-packages/numpy/ctypeslib/__init__.py', '.venv/lib/python3.12/site-packages/numpy/lib/_twodim_base_impl.py', '.venv/lib/python3.12/site-packages/numpy/matrixlib/__init__.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/tests/test_printing.py', '.venv/lib/python3.12/site-packages/numpy/f2py/__version__.py', '.venv/lib/python3.12/site-packages/numpy/f2py/func2subr.py', '.venv/lib/python3.12/site-packages/numpy/_core/printoptions.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_array_api_info.py', '.venv/lib/python3.12/site-packages/PIL/FontFile.py', '.venv/lib/python3.12/site-packages/numpy/tests/test_numpy_version.py', '.venv/lib/python3.12/site-packages/numpy/ma/mrecords.py', '.venv/lib/python3.12/site-packages/numpy/f2py/_backends/_distutils.py', '.venv/lib/python3.12/site-packages/pyparsing/unicode.py', '.venv/lib/python3.12/site-packages/PIL/AvifImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/f2py/rules.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_function_base.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/random.py', '.venv/lib/python3.12/site-packages/PIL/SunImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/matrixlib/tests/test_numeric.py', '.venv/lib/python3.12/site-packages/numpy/random/tests/test_direct.py', '.venv/lib/python3.12/site-packages/PIL/IptcImagePlugin.py', '.venv/lib/python3.12/site-packages/PIL/QoiImagePlugin.py', '.venv/lib/python3.12/site-packages/dateutil/tz/_factories.py', '.venv/lib/python3.12/site-packages/numpy/tests/test_lazyloading.py', '.venv/lib/python3.12/site-packages/PIL/PcdImagePlugin.py', '.venv/lib/python3.12/site-packages/dateutil/_version.py', '.venv/lib/python3.12/site-packages/numpy/_core/fromnumeric.py', '.venv/lib/python3.12/site-packages/PIL/FitsImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/fft/_pocketfft.py', '.venv/lib/python3.12/site-packages/PIL/GimpGradientFile.py', '.venv/lib/python3.12/site-packages/numpy/random/_examples/cffi/extending.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/warnings_and_errors.py', '.venv/lib/python3.12/site-packages/numpy/_core/_exceptions.py', '.venv/lib/python3.12/site-packages/numpy/_core/umath.py', '.venv/lib/python3.12/site-packages/PIL/XbmImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_kind.py', '.venv/lib/python3.12/site-packages/dateutil/_common.py', '.venv/lib/python3.12/site-packages/numpy/_core/_add_newdocs_scalars.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/util.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_datetime.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_umath_accuracy.py', '.venv/lib/python3.12/site-packages/PIL/ImageFile.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_limited_api.py', '.venv/lib/python3.12/site-packages/numpy/core/fromnumeric.py', '.venv/lib/python3.12/site-packages/numpy/lib/_arraysetops_impl.py', '.venv/lib/python3.12/site-packages/numpy/testing/print_coercion_tables.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_polynomial.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_cpu_features.py', '.venv/lib/python3.12/site-packages/PIL/CurImagePlugin.py', '.venv/lib/python3.12/site-packages/PIL/FpxImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/testing/tests/test_utils.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_stringdtype.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/simple.py', '.venv/lib/python3.12/site-packages/PIL/WalImageFile.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_ufunclike.py', '.venv/lib/python3.12/site-packages/numpy/_typing/_array_like.py', '.venv/lib/python3.12/site-packages/PIL/PcxImagePlugin.py', '.venv/lib/python3.12/site-packages/pyparsing/warnings.py', '.venv/lib/python3.12/site-packages/PIL/_version.py', '.venv/lib/python3.12/site-packages/numpy/_typing/_scalars.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/test_typing.py', '.venv/lib/python3.12/site-packages/PIL/_typing.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_print.py', '.venv/lib/python3.12/site-packages/numpy/lib/introspect.py', '.venv/lib/python3.12/site-packages/numpy/core/_utils.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_arraysetops.py', '.venv/lib/python3.12/site-packages/numpy/_utils/__init__.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_einsum.py', '.venv/lib/python3.12/site-packages/PIL/WebPImagePlugin.py', '.venv/lib/python3.12/site-packages/PIL/ImageTransform.py', '.venv/lib/python3.12/site-packages/numpy/matrixlib/defmatrix.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_docs.py', '.venv/lib/python3.12/site-packages/PIL/MpoImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/random/tests/__init__.py', '.venv/lib/python3.12/site-packages/numpy/_typing/_nested_sequence.py', '.venv/lib/python3.12/site-packages/numpy/_utils/_convertions.py', '.venv/lib/python3.12/site-packages/numpy/ma/tests/test_extras.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/mod.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/recfunctions.py', '.venv/lib/python3.12/site-packages/numpy/_typing/__init__.py', '.venv/lib/python3.12/site-packages/numpy/random/_pickle.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_deprecations.py', '.venv/lib/python3.12/site-packages/numpy/testing/_private/__init__.py', '.venv/lib/python3.12/site-packages/numpy/f2py/f90mod_rules.py', '.venv/lib/python3.12/site-packages/PIL/TiffTags.py', '.venv/lib/python3.12/site-packages/PIL/PdfParser.py', '.venv/lib/python3.12/site-packages/PIL/ImageCms.py', '.venv/lib/python3.12/site-packages/PIL/GdImageFile.py', '.venv/lib/python3.12/site-packages/numpy/lib/_format_impl.py', '.venv/lib/python3.12/site-packages/numpy/lib/_npyio_impl.py', '.venv/lib/python3.12/site-packages/numpy/testing/_private/utils.py', '.venv/lib/python3.12/site-packages/numpy/_core/multiarray.py', '.venv/lib/python3.12/site-packages/numpy/lib/scimath.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/einsumfunc.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_item_selection.py', '.venv/lib/python3.12/site-packages/numpy/tests/test__all__.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_loadtxt.py', '.venv/lib/python3.12/site-packages/dateutil/tz/_common.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/nditer.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_f2cmap.py', '.venv/lib/python3.12/site-packages/numpy/version.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/_locales.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/tests/test_symbol.py', '.venv/lib/python3.12/site-packages/numpy/exceptions.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/chebyshev.py', '.venv/lib/python3.12/site-packages/numpy/core/arrayprint.py', '.venv/lib/python3.12/site-packages/numpy/lib/user_array.py', '.venv/lib/python3.12/site-packages/numpy/core/function_base.py', '.venv/lib/python3.12/site-packages/PIL/ImtImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/fft/__init__.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/hermite_e.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_scalarinherit.py', '.venv/lib/python3.12/site-packages/PIL/TarIO.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_overrides.py', '.venv/lib/python3.12/site-packages/numpy/f2py/common_rules.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_umath.py', '.venv/lib/python3.12/site-packages/numpy/doc/ufuncs.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_ufunc.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_symbolic.py', '.venv/lib/python3.12/site-packages/numpy/core/einsumfunc.py', '.venv/lib/python3.12/site-packages/numpy/_core/_dtype_ctypes.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/laguerre.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/lib_version.py', '.venv/lib/python3.12/site-packages/numpy/_core/shape_base.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/polynomial.py', '.venv/lib/python3.12/site-packages/numpy/f2py/_isocbind.py', '.venv/lib/python3.12/site-packages/dateutil/__init__.py', '.venv/lib/python3.12/site-packages/pyparsing/core.py', '.venv/lib/python3.12/site-packages/PIL/IcnsImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/numeric.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_simd_module.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/tests/__init__.py', '.venv/lib/python3.12/site-packages/numpy/lib/_scimath_impl.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/tests/test_hermite.py', '.venv/lib/python3.12/site-packages/PIL/ImageTk.py', '.venv/lib/python3.12/site-packages/numpy/lib/_shape_base_impl.py', '.venv/lib/python3.12/site-packages/PIL/PaletteFile.py', '.venv/lib/python3.12/site-packages/numpy/_pytesttester.py', '.venv/lib/python3.12/site-packages/numpy/linalg/tests/__init__.py', '.venv/lib/python3.12/site-packages/PIL/DcxImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_parameter.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_errstate.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/ma.py', '.venv/lib/python3.12/site-packages/numpy/_array_api_info.py', '.venv/lib/python3.12/site-packages/numpy/tests/__init__.py', '.venv/lib/python3.12/site-packages/dateutil/relativedelta.py', '.venv/lib/python3.12/site-packages/PIL/ImageStat.py', '.venv/lib/python3.12/site-packages/numpy/typing/__init__.py', '.venv/lib/python3.12/site-packages/numpy/_core/cversions.py', '.venv/lib/python3.12/site-packages/numpy/core/numeric.py', '.venv/lib/python3.12/site-packages/numpy/core/umath.py', '.venv/lib/python3.12/site-packages/pyparsing/ai/show_best_practices/__main__.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_cython.py', '.venv/lib/python3.12/site-packages/PIL/SpiderImagePlugin.py', '.venv/lib/python3.12/site-packages/PIL/PcfFontFile.py', '.venv/lib/python3.12/site-packages/numpy/core/numerictypes.py', '.venv/lib/python3.12/site-packages/dateutil/tz/win.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_shape_base.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/shape.py', '.venv/lib/python3.12/site-packages/PIL/ImagePath.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_dlpack.py', '.venv/lib/python3.12/site-packages/numpy/tests/test_configtool.py', '.venv/lib/python3.12/site-packages/numpy/matrixlib/tests/__init__.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/_polybase.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_callback.py', '.venv/lib/python3.12/site-packages/numpy/conftest.py', '.venv/lib/python3.12/site-packages/numpy/linalg/__init__.py', '.venv/lib/python3.12/site-packages/PIL/FtexImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/random/_examples/numba/extending.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_return_character.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/ndarray_conversion.py', '.venv/lib/python3.12/site-packages/numpy/random/tests/test_generator_mt19937_regressions.py', '.venv/lib/python3.12/site-packages/numpy/lib/_stride_tricks_impl.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/tests/test_polyutils.py', '.venv/lib/python3.12/site-packages/numpy/f2py/capi_maps.py', '.venv/lib/python3.12/site-packages/PIL/ImageDraw.py', '.venv/lib/python3.12/site-packages/PIL/ImImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_arraymethod.py', '.venv/lib/python3.12/site-packages/PIL/ImageFilter.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/arithmetic.py', '.venv/lib/python3.12/site-packages/numpy/_pyinstaller/hook-numpy.py', '.venv/lib/python3.12/site-packages/numpy/tests/test_ctypeslib.py', '.venv/lib/python3.12/site-packages/PIL/BlpImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_extint128.py', '.venv/lib/python3.12/site-packages/numpy/matlib.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_conversion_utils.py', '.venv/lib/python3.12/site-packages/PIL/ImageChops.py', '.venv/lib/python3.12/site-packages/PIL/ImageShow.py', '.venv/lib/python3.12/site-packages/numpy/rec/__init__.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/multiarray.py', '.venv/lib/python3.12/site-packages/pyparsing/ai/show_best_practices/__init__.py', '.venv/lib/python3.12/site-packages/numpy/dtypes.py', '.venv/lib/python3.12/site-packages/numpy/_typing/_dtype_like.py', '.venv/lib/python3.12/site-packages/numpy/_typing/_char_codes.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test__datasource.py', '.venv/lib/python3.12/site-packages/PIL/ImageFont.py', '.venv/lib/python3.12/site-packages/dateutil/parser/isoparser.py', '.venv/lib/python3.12/site-packages/numpy/_core/defchararray.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_memmap.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/tests/test_legendre.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/literal.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/__init__.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_utils.py', '.venv/lib/python3.12/site-packages/PIL/FliImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/_core/memmap.py', '.venv/lib/python3.12/site-packages/numpy/core/overrides.py', '.venv/lib/python3.12/site-packages/numpy/_core/numerictypes.py', '.venv/lib/python3.12/site-packages/numpy/lib/_ufunclike_impl.py', '.venv/lib/python3.12/site-packages/PIL/DdsImagePlugin.py', '.venv/lib/python3.12/site-packages/PIL/WmfImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/_core/getlimits.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_nep50_promotions.py', '.venv/lib/python3.12/site-packages/numpy/core/_multiarray_umath.py', '.venv/lib/python3.12/site-packages/numpy/ma/tests/test_subclassing.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_hashtable.py', '.venv/lib/python3.12/site-packages/numpy/ma/tests/test_mrecords.py', '.venv/lib/python3.12/site-packages/PIL/ContainerIO.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/_natype.py', '.venv/lib/python3.12/site-packages/numpy/lib/_datasource.py', '.venv/lib/python3.12/site-packages/PIL/PalmImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_mixins.py', '.venv/lib/python3.12/site-packages/numpy/testing/overrides.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_casting_unittests.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/tests/test_polynomial.py', '.venv/lib/python3.12/site-packages/numpy/_core/_internal.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_umath_complex.py', '.venv/lib/python3.12/site-packages/numpy/_core/_methods.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test__iotools.py', '.venv/lib/python3.12/site-packages/numpy/fft/tests/__init__.py', '.venv/lib/python3.12/site-packages/PIL/TgaImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/matrixlib/tests/test_interaction.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_io.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/hermite.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_size.py', '.venv/lib/python3.12/site-packages/numpy/ma/__init__.py', '.venv/lib/python3.12/site-packages/numpy/testing/tests/__init__.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/test_runtime.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_dtype.py', '.venv/lib/python3.12/site-packages/numpy/f2py/auxfuncs.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_return_real.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_quoted_character.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_indexing.py', '.venv/lib/python3.12/site-packages/PIL/PSDraw.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/tests/test_classes.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_multiprocessing.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_argparse.py', '.venv/lib/python3.12/site-packages/PIL/report.py', '.venv/lib/python3.12/site-packages/numpy/random/tests/test_randomstate.py', '.venv/lib/python3.12/site-packages/PIL/MpegImagePlugin.py', '.venv/lib/python3.12/site-packages/dateutil/utils.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_array_interface.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_string.py', '.venv/lib/python3.12/site-packages/PIL/ImageMode.py', '.venv/lib/python3.12/site-packages/numpy/matrixlib/tests/test_defmatrix.py', '.venv/lib/python3.12/site-packages/numpy/_typing/_nbit_base.py', '.venv/lib/python3.12/site-packages/PIL/ImagePalette.py', '.venv/lib/python3.12/site-packages/PIL/ImageQt.py', '.venv/lib/python3.12/site-packages/numpy/fft/tests/test_helper.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_assumed_shape.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_finfo.py', '.venv/lib/python3.12/site-packages/dateutil/zoneinfo/rebuild.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_simd.py', '.venv/lib/python3.12/site-packages/numpy/_typing/_add_docstring.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test__exceptions.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_array_coercion.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/tests/test_hermite_e.py', '.venv/lib/python3.12/site-packages/numpy/_core/records.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_abc.py', '.venv/lib/python3.12/site-packages/numpy/core/__init__.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_array_utils.py', '.venv/lib/python3.12/site-packages/numpy/random/tests/test_regression.py', '.venv/lib/python3.12/site-packages/numpy/_utils/_inspect.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/polyutils.py', '.venv/lib/python3.12/site-packages/numpy/random/tests/test_generator_mt19937.py', '.venv/lib/python3.12/site-packages/numpy/random/tests/test_seed_sequence.py', '.venv/lib/python3.12/site-packages/numpy/lib/_arrayterator_impl.py', '.venv/lib/python3.12/site-packages/numpy/_core/numeric.py', '.venv/lib/python3.12/site-packages/numpy/ma/tests/test_deprecations.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_nanfunctions.py', '.venv/lib/python3.12/site-packages/numpy/_core/_ufunc_config.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_modules.py', '.venv/lib/python3.12/site-packages/numpy/f2py/f2py2e.py', '.venv/lib/python3.12/site-packages/numpy/_core/arrayprint.py', '.venv/lib/python3.12/site-packages/PIL/MicImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/lib/_index_tricks_impl.py', '.venv/lib/python3.12/site-packages/numpy/fft/tests/test_pocketfft.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_scalar_methods.py', '.venv/lib/python3.12/site-packages/numpy/random/tests/test_extending.py', '.venv/lib/python3.12/site-packages/PIL/ImageColor.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_protocols.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_common.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_isoc.py', '.venv/lib/python3.12/site-packages/numpy/_distributor_init.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_character.py', '.venv/lib/python3.12/site-packages/numpy/linalg/tests/test_linalg.py', '.venv/lib/python3.12/site-packages/numpy/_pyinstaller/__init__.py', '.venv/lib/python3.12/site-packages/numpy/lib/_iotools.py', '.venv/lib/python3.12/site-packages/numpy/lib/npyio.py', '.venv/lib/python3.12/site-packages/pyparsing/common.py', '.venv/lib/python3.12/site-packages/PIL/__main__.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/legendre.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_api.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/arrayprint.py', '.venv/lib/python3.12/site-packages/numpy/random/tests/test_random.py', '.venv/lib/python3.12/site-packages/PIL/ImageOps.py', '.venv/lib/python3.12/site-packages/numpy/_core/_type_aliases.py', '.venv/lib/python3.12/site-packages/numpy/core/getlimits.py', '.venv/lib/python3.12/site-packages/numpy/f2py/crackfortran.py', '.venv/lib/python3.12/site-packages/PIL/ImageEnhance.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/__init__.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_stride_tricks.py', '.venv/lib/python3.12/site-packages/numpy/f2py/_backends/_backend.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_value_attrspec.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_twodim_base.py', '.venv/lib/python3.12/site-packages/numpy/linalg/tests/test_regression.py', '.venv/lib/python3.12/site-packages/numpy/core/defchararray.py', '.venv/lib/python3.12/site-packages/numpy/f2py/_backends/_meson.py', '.venv/lib/python3.12/site-packages/numpy/matrixlib/tests/test_masked_matrix.py', '.venv/lib/python3.12/site-packages/numpy/ma/tests/test_core.py', '.venv/lib/python3.12/site-packages/numpy/lib/_histograms_impl.py', '.venv/lib/python3.12/site-packages/numpy/matrixlib/tests/test_matrix_linalg.py', '.venv/lib/python3.12/site-packages/numpy/core/shape_base.py', '.venv/lib/python3.12/site-packages/numpy/lib/stride_tricks.py', '.venv/lib/python3.12/site-packages/numpy/f2py/cfuncs.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/lib_utils.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_data.py', '.venv/lib/python3.12/site-packages/numpy/lib/_utils_impl.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_scalarprint.py', '.venv/lib/python3.12/site-packages/PIL/_tkinter_finder.py', '.venv/lib/python3.12/site-packages/numpy/lib/array_utils.py', '.venv/lib/python3.12/site-packages/numpy/ma/tests/test_arrayobject.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_histograms.py', '.venv/lib/python3.12/site-packages/numpy/char/__init__.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/fromnumeric.py', '.venv/lib/python3.12/site-packages/numpy/core/_dtype.py', '.venv/lib/python3.12/site-packages/numpy/ma/tests/test_regression.py', '.venv/lib/python3.12/site-packages/pyparsing/__init__.py', '.venv/lib/python3.12/site-packages/PIL/__init__.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_multiarray.py', '.venv/lib/python3.12/site-packages/PIL/Hdf5StubImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/ctypeslib/_ctypeslib.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_mem_policy.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_routines.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_multithreading.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/__init__.py', '.venv/lib/python3.12/site-packages/PIL/BmpImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/lib_user_array.py', '.venv/lib/python3.12/site-packages/numpy/f2py/symbolic.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_unicode.py', '.venv/lib/python3.12/site-packages/dateutil/zoneinfo/__init__.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_scalarmath.py', '.venv/lib/python3.12/site-packages/numpy/core/multiarray.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_scalar_ctors.py', '.venv/lib/python3.12/site-packages/PIL/_binary.py', '.venv/lib/python3.12/site-packages/pyparsing/ai/__init__.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_index_tricks.py', '.venv/lib/python3.12/site-packages/numpy/tests/test_matlib.py', '.venv/lib/python3.12/site-packages/numpy/_core/_dtype.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_f2py2e.py', '.venv/lib/python3.12/site-packages/numpy/tests/test_numpy_config.py', '.venv/lib/python3.12/site-packages/numpy/ma/testutils.py', '.venv/lib/python3.12/site-packages/numpy/random/_examples/cffi/parse.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_packbits.py', '.venv/lib/python3.12/site-packages/dateutil/parser/_parser.py', '.venv/lib/python3.12/site-packages/PIL/ImageDraw2.py', '.venv/lib/python3.12/site-packages/numpy/ma/core.py', '.venv/lib/python3.12/site-packages/dateutil/rrule.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_semicolon_split.py', '.venv/lib/python3.12/site-packages/PIL/MspImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/random/tests/test_smoke.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test__version.py', '.venv/lib/python3.12/site-packages/numpy/_typing/_ufunc.py', '.venv/lib/python3.12/site-packages/PIL/TiffImagePlugin.py', '.venv/lib/python3.12/site-packages/PIL/BufrStubImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_abstract_interface.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_arrayterator.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_regression.py', '.venv/lib/python3.12/site-packages/numpy/core/records.py', '.venv/lib/python3.12/site-packages/PIL/PixarImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/_core/__init__.py', '.venv/lib/python3.12/site-packages/numpy/linalg/tests/test_deprecations.py', '.venv/lib/python3.12/site-packages/numpy/_expired_attrs_2_0.py', '.venv/lib/python3.12/site-packages/PIL/_util.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_regression.py', '.venv/lib/python3.12/site-packages/numpy/f2py/use_rules.py', '.venv/lib/python3.12/site-packages/numpy/_pyinstaller/tests/pyinstaller-smoke.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/ndarray_shape_manipulation.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/test_isfile.py', '.venv/lib/python3.12/site-packages/numpy/random/__init__.py', '.venv/lib/python3.12/site-packages/PIL/McIdasImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/_core/overrides.py', '.venv/lib/python3.12/site-packages/PIL/JpegImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/_pyinstaller/tests/test_pyinstaller.py', '.venv/lib/python3.12/site-packages/dateutil/tz/__init__.py', '.venv/lib/python3.12/site-packages/numpy/_core/einsumfunc.py', '.venv/lib/python3.12/site-packages/PIL/IcoImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/tests/test_public_api.py', '.venv/lib/python3.12/site-packages/pyparsing/tools/__init__.py', '.venv/lib/python3.12/site-packages/pyparsing/helpers.py', '.venv/lib/python3.12/site-packages/numpy/_pyinstaller/tests/__init__.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_getlimits.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/ufunclike.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_mixed.py', '.venv/lib/python3.12/site-packages/pyparsing/exceptions.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/index_tricks.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/ufunc_config.py', '.venv/lib/python3.12/site-packages/numpy/_typing/_extended_precision.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_regression.py', '.venv/lib/python3.12/site-packages/numpy/lib/_arraypad_impl.py', '.venv/lib/python3.12/site-packages/numpy/_core/strings.py', '.venv/lib/python3.12/site-packages/numpy/f2py/__init__.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/tests/test_chebyshev.py', '.venv/lib/python3.12/site-packages/numpy/strings/__init__.py', '.venv/lib/python3.12/site-packages/numpy/_core/_add_newdocs.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_numerictypes.py', '.venv/lib/python3.12/site-packages/PIL/ImageSequence.py', '.venv/lib/python3.12/site-packages/numpy/f2py/cb_rules.py', '.venv/lib/python3.12/site-packages/numpy/ma/tests/test_old_ma.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_records.py', '.venv/lib/python3.12/site-packages/numpy/tests/test_warnings.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_return_logical.py', '.venv/lib/python3.12/site-packages/PIL/XpmImagePlugin.py', '.venv/lib/python3.12/site-packages/PIL/PsdImagePlugin.py', '.venv/lib/python3.12/site-packages/PIL/ImageText.py', '.venv/lib/python3.12/site-packages/numpy/random/tests/test_randomstate_regression.py', '.venv/lib/python3.12/site-packages/numpy/lib/__init__.py', '.venv/lib/python3.12/site-packages/numpy/_configtool.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_block_docstring.py', '.venv/lib/python3.12/site-packages/PIL/JpegPresets.py', '.venv/lib/python3.12/site-packages/numpy/tests/test_scripts.py', '.venv/lib/python3.12/site-packages/numpy/__config__.py', '.venv/lib/python3.12/site-packages/PIL/PdfImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/_core/function_base.py', '.venv/lib/python3.12/site-packages/PIL/SgiImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_return_integer.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_function_base.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/bitwise_ops.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/examples/cython/setup.py', '.venv/lib/python3.12/site-packages/PIL/GribStubImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/arrayterator.py', '.venv/lib/python3.12/site-packages/numpy/lib/tests/test_format.py', '.venv/lib/python3.12/site-packages/PIL/GifImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/lib/_user_array_impl.py', '.venv/lib/python3.12/site-packages/numpy/f2py/_src_pyf.py', '.venv/lib/python3.12/site-packages/numpy/_typing/_shape.py', '.venv/lib/python3.12/site-packages/numpy/_utils/_pep440.py', '.venv/lib/python3.12/site-packages/numpy/lib/_version.py', '.venv/lib/python3.12/site-packages/pyparsing/results.py', '.venv/lib/python3.12/site-packages/numpy/testing/_private/extbuild.py', '.venv/lib/python3.12/site-packages/numpy/polynomial/tests/test_laguerre.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_scalarbuffer.py', '.venv/lib/python3.12/site-packages/pyparsing/util.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_arrayobject.py', '.venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_arrayprint.py', '.venv/lib/python3.12/site-packages/PIL/features.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_crackfortran.py', '.venv/lib/python3.12/site-packages/numpy/f2py/diagnose.py', '.venv/lib/python3.12/site-packages/PIL/GbrImagePlugin.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/ufuncs.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_strings.py', '.venv/lib/python3.12/site-packages/PIL/ExifTags.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/ndarray_misc.py', '.venv/lib/python3.12/site-packages/PIL/Image.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_numeric.py', '.venv/lib/python3.12/site-packages/numpy/_core/tests/test_shape_base.py', '.venv/lib/python3.12/site-packages/dateutil/tz/tz.py', '.venv/lib/python3.12/site-packages/numpy/typing/tests/data/pass/scalars.py', '.venv/lib/python3.12/site-packages/numpy/fft/_helper.py', '.venv/lib/python3.12/site-packages/PIL/BdfFontFile.py', '.venv/lib/python3.12/site-packages/numpy/f2py/tests/test_array_from_pyobj.py', '.venv/lib/python3.12/site-packages/PIL/Jpeg2KImagePlugin.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [44041]
+INFO:     Started server process [44867]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in '.venv/lib/python3.12/site-packages/matplotlib/legend.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/C_F_F__2.py', '.venv/lib/python3.12/site-packages/matplotlib/_blocking_input.py', '.venv/lib/python3.12/site-packages/fontTools/svgLib/path/arc.py', '.venv/lib/python3.12/site-packages/fontTools/voltLib/ast.py', '.venv/lib/python3.12/site-packages/fontTools/misc/sstruct.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backend_cairo.py', '.venv/lib/python3.12/site-packages/matplotlib/sphinxext/mathmpl.py', '.venv/lib/python3.12/site-packages/fontTools/pens/filterPen.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/ttProgram.py', '.venv/lib/python3.12/site-packages/fontTools/subset/cff.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_agg_filter.py', '.venv/lib/python3.12/site-packages/fontTools/help.py', '.venv/lib/python3.12/site-packages/matplotlib/tri/_tricontour.py', '.venv/lib/python3.12/site-packages/fontTools/pens/transformPen.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_table.py', '.venv/lib/python3.12/site-packages/matplotlib/testing/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_m_o_r_x.py', '.venv/lib/python3.12/site-packages/fontTools/voltLib/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/avar/__main__.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/angle_helper.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/F__e_a_t.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/stat.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/M_V_A_R_.py', '.venv/lib/python3.12/site-packages/fontTools/merge/layout.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/DefaultTable.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_testing.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/O_S_2f_2.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/grUtils.py', '.venv/lib/python3.12/site-packages/fontTools/misc/loggingTools.py', '.venv/lib/python3.12/site-packages/fontTools/pens/cu2quPen.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/instancer/solver.py', '.venv/lib/python3.12/site-packages/fontTools/misc/bezierTools.py', '.venv/lib/python3.12/site-packages/matplotlib/pylab.py', '.venv/lib/python3.12/site-packages/matplotlib/patheffects.py', '.venv/lib/python3.12/site-packages/fontTools/encodings/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/T_S_I__5.py', '.venv/lib/python3.12/site-packages/fontTools/misc/filesystem/_errors.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_triangulation.py', '.venv/lib/python3.12/site-packages/fontTools/pens/pointInsidePen.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/T_S_I__3.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_api.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/E_B_D_T_.py', '.venv/lib/python3.12/site-packages/matplotlib/axes/_axes.py', '.venv/lib/python3.12/site-packages/matplotlib/tri/_tripcolor.py', '.venv/lib/python3.12/site-packages/fontTools/qu2cu/cli.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/G_M_A_P_.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/floating_axes.py', '.venv/lib/python3.12/site-packages/fontTools/mtiLib/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/ttVisitor.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_lines.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/M_E_T_A_.py', '.venv/lib/python3.12/site-packages/fontTools/qu2cu/benchmark.py', '.venv/lib/python3.12/site-packages/matplotlib/figure.py', '.venv/lib/python3.12/site-packages/pylab.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/T_S_I_S_.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_axes.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_l_c_a_r.py', '.venv/lib/python3.12/site-packages/fontTools/qu2cu/qu2cu.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_artist.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/interpolatableTestStartingPoint.py', '.venv/lib/python3.12/site-packages/matplotlib/projections/geo.py', '.venv/lib/python3.12/site-packages/matplotlib/container.py', '.venv/lib/python3.12/site-packages/matplotlib/quiver.py', '.venv/lib/python3.12/site-packages/fontTools/misc/filesystem/_tools.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/tests/test_angle_helper.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backend_qt.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axes_grid1/anchored_artists.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/avar/unbuild.py', '.venv/lib/python3.12/site-packages/fontTools/misc/filesystem/_base.py', '.venv/lib/python3.12/site-packages/fontTools/colorLib/errors.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_pickle.py', '.venv/lib/python3.12/site-packages/fontTools/misc/transform.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_offsetbox.py', '.venv/lib/python3.12/site-packages/fontTools/misc/psLib.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/avar/plan.py', '.venv/lib/python3.12/site-packages/fontTools/cu2qu/ufo.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/F_F_T_M_.py', '.venv/lib/python3.12/site-packages/fontTools/merge/base.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/T_S_I__1.py', '.venv/lib/python3.12/site-packages/matplotlib/testing/decorators.py', '.venv/lib/python3.12/site-packages/fontTools/pens/ttGlyphPen.py', '.venv/lib/python3.12/site-packages/matplotlib/tri/_trirefine.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/G_V_A_R_.py', '.venv/lib/python3.12/site-packages/fontTools/cffLib/__init__.py', '.venv/lib/python3.12/site-packages/contourpy/enum_util.py', '.venv/lib/python3.12/site-packages/matplotlib/projections/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/misc/eexec.py', '.venv/lib/python3.12/site-packages/matplotlib/text.py', '.venv/lib/python3.12/site-packages/fontTools/ufoLib/filenames.py', '.venv/lib/python3.12/site-packages/matplotlib/tri/_triinterpolate.py', '.venv/lib/python3.12/site-packages/matplotlib/hatch.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_wxagg.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/mplot3d/tests/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/pens/boundsPen.py', '.venv/lib/python3.12/site-packages/fontTools/designspaceLib/types.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axes_grid1/tests/test_axes_grid1.py', '.venv/lib/python3.12/site-packages/contourpy/util/_build_config.py', '.venv/lib/python3.12/site-packages/matplotlib/scale.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_m_e_t_a.py', '.venv/lib/python3.12/site-packages/matplotlib/tri/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/colorLib/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backend_svg.py', '.venv/lib/python3.12/site-packages/fontTools/feaLib/lexer.py', '.venv/lib/python3.12/site-packages/matplotlib/table.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/S__i_l_l.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backend_webagg.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/C_P_A_L_.py', '.venv/lib/python3.12/site-packages/fontTools/ufoLib/plistlib.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/interpolatable.py', '.venv/lib/python3.12/site-packages/fontTools/ufoLib/pointPen.py', '.venv/lib/python3.12/site-packages/contourpy/util/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/misc/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/D_S_I_G_.py', '.venv/lib/python3.12/site-packages/fontTools/feaLib/error.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/G_D_E_F_.py', '.venv/lib/python3.12/site-packages/matplotlib/legend_handler.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_agg.py', '.venv/lib/python3.12/site-packages/fontTools/subset/__main__.py', '.venv/lib/python3.12/site-packages/contourpy/convert.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/T_S_I_D_.py', '.venv/lib/python3.12/site-packages/fontTools/misc/testTools.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/macUtils.py', '.venv/lib/python3.12/site-packages/fontTools/feaLib/__main__.py', '.venv/lib/python3.12/site-packages/fontTools/qu2cu/__main__.py', '.venv/lib/python3.12/site-packages/fontTools/config/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/rcsetup.py', '.venv/lib/python3.12/site-packages/fontTools/misc/visitor.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/__main__.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/T_S_I_V_.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/iup.py', '.venv/lib/python3.12/site-packages/fontTools/ufoLib/errors.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_doc.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_sankey.py', '.venv/lib/python3.12/site-packages/fontTools/misc/intTools.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_g_v_a_r.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_tkagg.py', '.venv/lib/python3.12/site-packages/fontTools/merge/options.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_mlab.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_datetime.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_getattr.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_gridspec.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_preprocess_data.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/woff2.py', '.venv/lib/python3.12/site-packages/contourpy/util/bokeh_util.py', '.venv/lib/python3.12/site-packages/fontTools/misc/psCharStrings.py', '.venv/lib/python3.12/site-packages/fontTools/subset/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/ufoLib/etree.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backend_tools.py', '.venv/lib/python3.12/site-packages/fontTools/misc/configTools.py', '.venv/lib/python3.12/site-packages/fontTools/misc/etree.py', '.venv/lib/python3.12/site-packages/fontTools/misc/dictTools.py', '.venv/lib/python3.12/site-packages/fontTools/misc/arrayTools.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_gtk3agg.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axes_grid1/mpl_axes.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backend_registry.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/cff.py', '.venv/lib/python3.12/site-packages/matplotlib/_cm_multivar.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_p_o_s_t.py', '.venv/lib/python3.12/site-packages/fontTools/pens/recordingPen.py', '.venv/lib/python3.12/site-packages/matplotlib/_docstring.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/axes_divider.py', '.venv/lib/python3.12/site-packages/matplotlib/patches.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_dviread.py', '.venv/lib/python3.12/site-packages/fontTools/misc/enumTools.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/tests/test_axislines.py', '.venv/lib/python3.12/site-packages/fontTools/agl.py', '.venv/lib/python3.12/site-packages/contourpy/util/mpl_util.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axes_grid1/axes_rgb.py', '.venv/lib/python3.12/site-packages/fontTools/unicode.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_widgets.py', '.venv/lib/python3.12/site-packages/matplotlib/dviread.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/models.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_dates.py', '.venv/lib/python3.12/site-packages/matplotlib/axis.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/sbixGlyph.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_usetex.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/instancer/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/pens/teePen.py', '.venv/lib/python3.12/site-packages/matplotlib/animation.py', '.venv/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/instancer/names.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/axislines.py', '.venv/lib/python3.12/site-packages/fontTools/unicodedata/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/avar/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/unicodedata/Blocks.py', '.venv/lib/python3.12/site-packages/fontTools/misc/filesystem/_path.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/builder.py', '.venv/lib/python3.12/site-packages/fontTools/pens/basePen.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_ft2font.py', '.venv/lib/python3.12/site-packages/fontTools/pens/svgPathPen.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_colorbar.py', '.venv/lib/python3.12/site-packages/fontTools/feaLib/location.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_basic.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_bbox_tight.py', '.venv/lib/python3.12/site-packages/fontTools/misc/psOperators.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_gtk4agg.py', '.venv/lib/python3.12/site-packages/fontTools/misc/plistlib/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/misc/roundTools.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/avarPlanner.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_marker.py', '.venv/lib/python3.12/site-packages/fontTools/misc/vector.py', '.venv/lib/python3.12/site-packages/matplotlib/_mathtext.py', '.venv/lib/python3.12/site-packages/fontTools/subset/util.py', '.venv/lib/python3.12/site-packages/fontTools/merge/tables.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/T_S_I_J_.py', '.venv/lib/python3.12/site-packages/matplotlib/backend_tools.py', '.venv/lib/python3.12/site-packages/fontTools/voltLib/__main__.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/sbixStrike.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/grid_finder.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/B_A_S_E_.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backend_bases.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_ticker.py', '.venv/lib/python3.12/site-packages/matplotlib/image.py', '.venv/lib/python3.12/site-packages/fontTools/svgLib/path/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/misc/filesystem/_walk.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_o_p_b_d.py', '.venv/lib/python3.12/site-packages/fontTools/pens/cairoPen.py', '.venv/lib/python3.12/site-packages/fontTools/feaLib/lookupDebugInfo.py', '.venv/lib/python3.12/site-packages/matplotlib/colorizer.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_l_o_c_a.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_nbagg.py', '.venv/lib/python3.12/site-packages/matplotlib/mathtext.py', '.venv/lib/python3.12/site-packages/matplotlib/testing/jpl_units/Epoch.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_k_e_r_n.py', '.venv/lib/python3.12/site-packages/fontTools/unicodedata/OTTags.py', '.venv/lib/python3.12/site-packages/contourpy/util/bokeh_renderer.py', '.venv/lib/python3.12/site-packages/fontTools/feaLib/builder.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_determinism.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_collections.py', '.venv/lib/python3.12/site-packages/fontTools/cffLib/width.py', '.venv/lib/python3.12/site-packages/matplotlib/_type1font.py', '.venv/lib/python3.12/site-packages/matplotlib/axes/_base.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/avar/map.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/feaLib/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_path.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_g_l_y_f.py', '.venv/lib/python3.12/site-packages/matplotlib/_layoutgrid.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_agg.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_mathtext.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/C_B_D_T_.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_gtk4cairo.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/__main__.py', '.venv/lib/python3.12/site-packages/matplotlib/colorbar.py', '.venv/lib/python3.12/site-packages/fontTools/unicodedata/Scripts.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_animation.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backend_macosx.py', '.venv/lib/python3.12/site-packages/fontTools/otlLib/optimize/gpos.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/J_S_T_F_.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_streamplot.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/tests/conftest.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/style/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_qt5cairo.py', '.venv/lib/python3.12/site-packages/matplotlib/tri/_tritools.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/interpolatableTestContourOrder.py', '.venv/lib/python3.12/site-packages/fontTools/misc/filesystem/_osfs.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/_backend_gtk.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_colors.py', '.venv/lib/python3.12/site-packages/matplotlib/testing/jpl_units/StrConverter.py', '.venv/lib/python3.12/site-packages/fontTools/ttx.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_pgf.py', '.venv/lib/python3.12/site-packages/matplotlib/sphinxext/roles.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/M_A_T_H_.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/ttFont.py', '.venv/lib/python3.12/site-packages/matplotlib/_cm_listed.py', '.venv/lib/python3.12/site-packages/fontTools/encodings/codecs.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_qtcairo.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/TupleVariation.py', '.venv/lib/python3.12/site-packages/fontTools/qu2cu/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backend_nbagg.py', '.venv/lib/python3.12/site-packages/fontTools/annotations.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_p_r_e_p.py', '.venv/lib/python3.12/site-packages/matplotlib/_afm.py', '.venv/lib/python3.12/site-packages/fontTools/feaLib/parser.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/interpolatablePlot.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/errors.py', '.venv/lib/python3.12/site-packages/matplotlib/colors.py', '.venv/lib/python3.12/site-packages/matplotlib/_enums.py', '.venv/lib/python3.12/site-packages/matplotlib/_tight_bbox.py', '.venv/lib/python3.12/site-packages/matplotlib/testing/conftest.py', '.venv/lib/python3.12/site-packages/matplotlib/backend_managers.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_skew.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/tfmLib.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/instancer/featureVars.py', '.venv/lib/python3.12/site-packages/fontTools/otlLib/builder.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/ttCollection.py', '.venv/lib/python3.12/site-packages/fontTools/voltLib/lexer.py', '.venv/lib/python3.12/site-packages/contourpy/array.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axes_grid1/tests/conftest.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_n_a_m_e.py', '.venv/lib/python3.12/site-packages/fontTools/pens/perimeterPen.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/avar/build.py', '.venv/lib/python3.12/site-packages/fontTools/pens/momentsPen.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/conftest.py', '.venv/lib/python3.12/site-packages/fontTools/misc/filesystem/_info.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/removeOverlaps.py', '.venv/lib/python3.12/site-packages/matplotlib/testing/jpl_units/UnitDblConverter.py', '.venv/lib/python3.12/site-packages/fontTools/pens/statisticsPen.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/axis_artist.py', '.venv/lib/python3.12/site-packages/fontTools/misc/symfont.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_h_h_e_a.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_cycles.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backend_tk.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_pdf.py', '.venv/lib/python3.12/site-packages/matplotlib/projections/polar.py', '.venv/lib/python3.12/site-packages/fontTools/cu2qu/cu2qu.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_f_v_a_r.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_webagg.py', '.venv/lib/python3.12/site-packages/fontTools/cu2qu/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/reorderGlyphs.py', '.venv/lib/python3.12/site-packages/matplotlib/testing/jpl_units/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_m_a_x_p.py', '.venv/lib/python3.12/site-packages/matplotlib/_cm.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_legend.py', '.venv/lib/python3.12/site-packages/matplotlib/lines.py', '.venv/lib/python3.12/site-packages/fontTools/unicodedata/Mirrored.py', '.venv/lib/python3.12/site-packages/fontTools/otlLib/optimize/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/stackplot.py', '.venv/lib/python3.12/site-packages/fontTools/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/designspaceLib/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/otBase.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_constrainedlayout.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_multivariate_colormaps.py', '.venv/lib/python3.12/site-packages/fontTools/misc/iterTools.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/T_T_F_A_.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/instancer/__main__.py', '.venv/lib/python3.12/site-packages/fontTools/pens/wxPen.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/T_S_I__2.py', '.venv/lib/python3.12/site-packages/matplotlib/units.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_subplots.py', '.venv/lib/python3.12/site-packages/fontTools/designspaceLib/statNames.py', '.venv/lib/python3.12/site-packages/matplotlib/tri/_triangulation.py', '.venv/lib/python3.12/site-packages/fontTools/pens/qtPen.py', '.venv/lib/python3.12/site-packages/fontTools/pens/explicitClosingLinePen.py', '.venv/lib/python3.12/site-packages/matplotlib/collections.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/C_F_F_.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_macosx.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_category.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axes_grid1/axes_divider.py', '.venv/lib/python3.12/site-packages/matplotlib/spines.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/mutator.py', '.venv/lib/python3.12/site-packages/matplotlib/_tight_layout.py', '.venv/lib/python3.12/site-packages/matplotlib/style/core.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_compare_images.py', '.venv/lib/python3.12/site-packages/matplotlib/layout_engine.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_matplotlib.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/V_D_M_X_.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backends_interactive.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_tkcairo.py', '.venv/lib/python3.12/site-packages/fontTools/misc/filesystem/_copy.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_rcparams.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/mplot3d/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_p_r_o_p.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/scaleUpem.py', '.venv/lib/python3.12/site-packages/fontTools/misc/lazyTools.py', '.venv/lib/python3.12/site-packages/fontTools/voltLib/error.py', '.venv/lib/python3.12/site-packages/fontTools/cu2qu/benchmark.py', '.venv/lib/python3.12/site-packages/contourpy/typecheck.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/_backend_pdf_ps.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/D__e_b_g.py', '.venv/lib/python3.12/site-packages/fontTools/misc/filenames.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backend_pgf.py', '.venv/lib/python3.12/site-packages/fontTools/encodings/MacRoman.py', '.venv/lib/python3.12/site-packages/fontTools/pens/areaPen.py', '.venv/lib/python3.12/site-packages/matplotlib/testing/jpl_units/Duration.py', '.venv/lib/python3.12/site-packages/fontTools/encodings/StandardEncoding.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_texmanager.py', '.venv/lib/python3.12/site-packages/fontTools/designspaceLib/__main__.py', '.venv/lib/python3.12/site-packages/matplotlib/tri/_trifinder.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/S_T_A_T_.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_qtagg.py', '.venv/lib/python3.12/site-packages/matplotlib/contour.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_polar.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_l_t_a_g.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/T_S_I_B_.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/G_S_U_B_.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/tests/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/qt_editor/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/T_S_I_C_.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_g_c_i_d.py', '.venv/lib/python3.12/site-packages/cycler/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/typing.py', '.venv/lib/python3.12/site-packages/matplotlib/cbook.py', '.venv/lib/python3.12/site-packages/matplotlib/sphinxext/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_bezier.py', '.venv/lib/python3.12/site-packages/matplotlib/backend_bases.py', '.venv/lib/python3.12/site-packages/contourpy/dechunk.py', '.venv/lib/python3.12/site-packages/matplotlib/_api/deprecation.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axes_grid1/axes_size.py', '.venv/lib/python3.12/site-packages/matplotlib/testing/jpl_units/EpochConverter.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_v_m_t_x.py', '.venv/lib/python3.12/site-packages/matplotlib/category.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/mplot3d/tests/conftest.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/tests/test_grid_finder.py', '.venv/lib/python3.12/site-packages/contourpy/types.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_f_e_a_t.py', '.venv/lib/python3.12/site-packages/fontTools/svgLib/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_transforms.py', '.venv/lib/python3.12/site-packages/matplotlib/textpath.py', '.venv/lib/python3.12/site-packages/fontTools/colorLib/builder.py', '.venv/lib/python3.12/site-packages/contourpy/util/mpl_renderer.py', '.venv/lib/python3.12/site-packages/fontTools/misc/classifyTools.py', '.venv/lib/python3.12/site-packages/fontTools/misc/py23.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_g_a_s_p.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/interpolatableHelpers.py', '.venv/lib/python3.12/site-packages/matplotlib/mlab.py', '.venv/lib/python3.12/site-packages/fontTools/voltLib/parser.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_webagg_core.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_h_m_t_x.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/T_S_I_P_.py', '.venv/lib/python3.12/site-packages/fontTools/pens/qu2cuPen.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_tightlayout.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/mplot3d/art3d.py', '.venv/lib/python3.12/site-packages/fontTools/merge/__main__.py', '.venv/lib/python3.12/site-packages/fontTools/pens/quartzPen.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/multiVarStore.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/tests/test_grid_helper_curvelinear.py', '.venv/lib/python3.12/site-packages/fontTools/otlLib/optimize/__main__.py', '.venv/lib/python3.12/site-packages/fontTools/misc/macRes.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_units.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/G_P_O_S_.py', '.venv/lib/python3.12/site-packages/fontTools/misc/filesystem/_tempfs.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_quiver.py', '.venv/lib/python3.12/site-packages/matplotlib/_text_helpers.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/plot.py', '.venv/lib/python3.12/site-packages/fontTools/t1Lib/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_ps.py', '.venv/lib/python3.12/site-packages/kiwisolver/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/misc/macCreatorType.py', '.venv/lib/python3.12/site-packages/fontTools/misc/cython.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backend_template.py', '.venv/lib/python3.12/site-packages/fontTools/colorLib/geometry.py', '.venv/lib/python3.12/site-packages/matplotlib/testing/compare.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_afm.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_a_v_a_r.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_fontconfig_pattern.py', '.venv/lib/python3.12/site-packages/fontTools/ufoLib/kerning.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/merger.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_axis.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_b_s_l_n.py', '.venv/lib/python3.12/site-packages/fontTools/pens/freetypePen.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/grid_helper_curvelinear.py', '.venv/lib/python3.12/site-packages/fontTools/pens/reverseContourPen.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_sphinxext.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/axisline_style.py', '.venv/lib/python3.12/site-packages/fontTools/colorLib/unbuilder.py', '.venv/lib/python3.12/site-packages/matplotlib/sphinxext/plot_directive.py', '.venv/lib/python3.12/site-packages/matplotlib/markers.py', '.venv/lib/python3.12/site-packages/fontTools/pens/hashPointPen.py', '.venv/lib/python3.12/site-packages/contourpy/chunk.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axes_grid1/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/H_V_A_R_.py', '.venv/lib/python3.12/site-packages/matplotlib/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/misc/filesystem/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/cu2qu/__main__.py', '.venv/lib/python3.12/site-packages/fontTools/voltLib/voltToFea.py', '.venv/lib/python3.12/site-packages/fontTools/merge/cmap.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/qt_editor/figureoptions.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_m_o_r_t.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/S_V_G_.py', '.venv/lib/python3.12/site-packages/fontTools/cffLib/CFFToCFF2.py', '.venv/lib/python3.12/site-packages/matplotlib/_cm_bivar.py', '.venv/lib/python3.12/site-packages/matplotlib/_pylab_helpers.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_image.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_gtk3.py', '.venv/lib/python3.12/site-packages/fontTools/merge/unicode.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/registry.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/G__l_a_t.py', '.venv/lib/python3.12/site-packages/matplotlib/gridspec.py', '.venv/lib/python3.12/site-packages/fontTools/cffLib/specializer.py', '.venv/lib/python3.12/site-packages/matplotlib/_version.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/mplot3d/proj3d.py', '.venv/lib/python3.12/site-packages/matplotlib/axes/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_png.py', '.venv/lib/python3.12/site-packages/matplotlib/tri/_triplot.py', '.venv/lib/python3.12/site-packages/matplotlib/sphinxext/figmpl_directive.py', '.venv/lib/python3.12/site-packages/contourpy/_version.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_wx.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_c_v_t.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_wxcairo.py', '.venv/lib/python3.12/site-packages/matplotlib/inset.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axes_grid1/inset_locator.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_c_m_a_p.py', '.venv/lib/python3.12/site-packages/matplotlib/bezier.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/tests/test_floating_axes.py', '.venv/lib/python3.12/site-packages/fontTools/ufoLib/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/otData.py', '.venv/lib/python3.12/site-packages/kiwisolver/exceptions.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/asciiTable.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_gtk3cairo.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_textpath.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/S__i_l_f.py', '.venv/lib/python3.12/site-packages/fontTools/misc/xmlReader.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_figure.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backend_pdf.py', '.venv/lib/python3.12/site-packages/matplotlib/testing/_markers.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backend_gtk3.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_simplification.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/V_A_R_C_.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/otTraverse.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_style.py', '.venv/lib/python3.12/site-packages/fontTools/misc/textTools.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/featureVars.py', '.venv/lib/python3.12/site-packages/fontTools/ufoLib/glifLib.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/otConverters.py', '.venv/lib/python3.12/site-packages/fontTools/misc/timeTools.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_arrow_patches.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backend_inline.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_h_d_m_x.py', '.venv/lib/python3.12/site-packages/fontTools/otlLib/maxContextCalc.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_v_h_e_a.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/L_T_S_H_.py', '.venv/lib/python3.12/site-packages/fontTools/cu2qu/errors.py', '.venv/lib/python3.12/site-packages/fontTools/misc/encodingTools.py', '.venv/lib/python3.12/site-packages/matplotlib/_internal_utils.py', '.venv/lib/python3.12/site-packages/fontTools/designspaceLib/split.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axes_grid1/parasite_axes.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_mixed.py', '.venv/lib/python3.12/site-packages/fontTools/pens/pointPen.py', '.venv/lib/python3.12/site-packages/matplotlib/testing/widgets.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/standardGlyphOrder.py', '.venv/lib/python3.12/site-packages/fontTools/misc/cliTools.py', '.venv/lib/python3.12/site-packages/fontTools/misc/xmlWriter.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/mplot3d/axis3d.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/qt_compat.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_qt5agg.py', '.venv/lib/python3.12/site-packages/matplotlib/_constrained_layout.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_c_i_d_g.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/C_B_L_C_.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/mvar.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_patheffects.py', '.venv/lib/python3.12/site-packages/fontTools/cffLib/transforms.py', '.venv/lib/python3.12/site-packages/matplotlib/_color_data.py', '.venv/lib/python3.12/site-packages/matplotlib/offsetbox.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/mplot3d/tests/test_art3d.py', '.venv/lib/python3.12/site-packages/fontTools/cu2qu/cli.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/E_B_L_C_.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_patches.py', '.venv/lib/python3.12/site-packages/fontTools/pens/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/__main__.py', '.venv/lib/python3.12/site-packages/contourpy/util/data.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_a_n_k_r.py', '.venv/lib/python3.12/site-packages/fontTools/cffLib/CFF2ToCFF.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_c_v_a_r.py', '.venv/lib/python3.12/site-packages/fontTools/unicodedata/ScriptExtensions.py', '.venv/lib/python3.12/site-packages/fontTools/ufoLib/converters.py', '.venv/lib/python3.12/site-packages/fontTools/fontBuilder.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/mplot3d/tests/test_legend3d.py', '.venv/lib/python3.12/site-packages/fontTools/colorLib/table_builder.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_qt5.py', '.venv/lib/python3.12/site-packages/fontTools/svgLib/path/parser.py', '.venv/lib/python3.12/site-packages/matplotlib/streamplot.py', '.venv/lib/python3.12/site-packages/fontTools/svgLib/path/shapes.py', '.venv/lib/python3.12/site-packages/fontTools/misc/treeTools.py', '.venv/lib/python3.12/site-packages/matplotlib/axes/_secondary_axes.py', '.venv/lib/python3.12/site-packages/matplotlib/cm.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/V_O_R_G_.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_spines.py', '.venv/lib/python3.12/site-packages/matplotlib/transforms.py', '.venv/lib/python3.12/site-packages/fontTools/ufoLib/validators.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/varStore.py', '.venv/lib/python3.12/site-packages/fontTools/mtiLib/__main__.py', '.venv/lib/python3.12/site-packages/fontTools/pens/reportLabPen.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/G__l_o_c.py', '.venv/lib/python3.12/site-packages/fontTools/feaLib/variableScalar.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/C_O_L_R_.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/G_P_K_G_.py', '.venv/lib/python3.12/site-packages/matplotlib/ticker.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_contour.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_f_p_g_m.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/parasite_axes.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_s_b_i_x.py', '.venv/lib/python3.12/site-packages/fontTools/misc/fixedTools.py', '.venv/lib/python3.12/site-packages/fontTools/pens/t2CharStringPen.py', '.venv/lib/python3.12/site-packages/fontTools/subset/svg.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_container.py', '.venv/lib/python3.12/site-packages/fontTools/merge/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_h_e_a_d.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/hvar.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/sfnt.py', '.venv/lib/python3.12/site-packages/matplotlib/artist.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_qt.py', '.venv/lib/python3.12/site-packages/matplotlib/_animation_data.py', '.venv/lib/python3.12/site-packages/contourpy/util/renderer.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/ttGlyphSet.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axisartist/tests/test_axis_artist.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_cbook.py', '.venv/lib/python3.12/site-packages/matplotlib/sankey.py', '.venv/lib/python3.12/site-packages/fontTools/feaLib/ast.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_cairo.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/BitmapGlyphMetrics.py', '.venv/lib/python3.12/site-packages/matplotlib/_mathtext_data.py', '.venv/lib/python3.12/site-packages/fontTools/pens/cocoaPen.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/_backend_tk.py', '.venv/lib/python3.12/site-packages/fontTools/ufoLib/utils.py', '.venv/lib/python3.12/site-packages/fontTools/pens/roundingPen.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axes_grid1/axes_grid.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/S_I_N_G_.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_svg.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/mplot3d/tests/test_axes3d.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/_t_r_a_k.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/mplot3d/axes3d.py', '.venv/lib/python3.12/site-packages/matplotlib/testing/jpl_units/UnitDblFormatter.py', '.venv/lib/python3.12/site-packages/matplotlib/testing/jpl_units/UnitDbl.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_gtk4.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_backend_ps.py', '.venv/lib/python3.12/site-packages/matplotlib/texmanager.py', '.venv/lib/python3.12/site-packages/contourpy/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_type1font.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/backend_template.py', '.venv/lib/python3.12/site-packages/matplotlib/testing/exceptions.py', '.venv/lib/python3.12/site-packages/matplotlib/font_manager.py', '.venv/lib/python3.12/site-packages/fontTools/misc/filesystem/_zipfs.py', '.venv/lib/python3.12/site-packages/matplotlib/dates.py', '.venv/lib/python3.12/site-packages/matplotlib/backends/qt_editor/_formlayout.py', '.venv/lib/python3.12/site-packages/matplotlib/path.py', '.venv/lib/python3.12/site-packages/fontTools/merge/util.py', '.venv/lib/python3.12/site-packages/fontTools/misc/filesystem/_subfs.py', '.venv/lib/python3.12/site-packages/matplotlib/_api/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_font_manager.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/T_S_I__0.py', '.venv/lib/python3.12/site-packages/matplotlib/pyplot.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/otTables.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_scale.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_pyplot.py', '.venv/lib/python3.12/site-packages/fontTools/ttLib/tables/V_V_A_R_.py', '.venv/lib/python3.12/site-packages/matplotlib/widgets.py', '.venv/lib/python3.12/site-packages/fontTools/otlLib/error.py', '.venv/lib/python3.12/site-packages/fontTools/varLib/interpolate_layout.py', '.venv/lib/python3.12/site-packages/mpl_toolkits/axes_grid1/tests/__init__.py', '.venv/lib/python3.12/site-packages/fontTools/afmLib.py', '.venv/lib/python3.12/site-packages/fontTools/otlLib/__init__.py', '.venv/lib/python3.12/site-packages/matplotlib/tests/test_text.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [44867]
+INFO:     Started server process [44914]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:53750 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53753 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53755 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53877 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53879 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53883 - "GET /ai/suggestions HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/main.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [44914]
+INFO:     Started server process [44932]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:54010 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54014 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54016 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54151 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54153 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54157 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54280 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54284 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54286 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54411 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54413 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54417 - "GET /ai/suggestions HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'gui.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [44932]
+INFO:     Started server process [44971]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:54545 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54549 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54551 - "GET /ai/suggestions HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'gui.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [44971]
+INFO:     Started server process [44985]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:54677 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54679 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54681 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54801 - "GET /reports/analytics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54986 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54990 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54992 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54996 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54997 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54999 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55001 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55017 - "GET /reports/analytics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55082 - "GET /reports/analytics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55089 - "GET /reports/analytics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55127 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55129 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55133 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55189 - "GET /settings/margins HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55198 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55205 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55212 - "GET /vault HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55213 - "GET /transactions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55222 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55224 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55228 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55230 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55234 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55236 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55240 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55242 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55278 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55282 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55284 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55407 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55409 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55411 - "GET /ai/suggestions HTTP/1.1" 200 OK
+Error fetching prices: 
+INFO:     127.0.0.1:55536 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55538 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55542 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55665 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55669 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55671 - "GET /ai/suggestions HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'tests/test_main.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [44985]
+INFO:     Started server process [45401]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:55799 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55802 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55806 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55934 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55938 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55940 - "GET /ai/suggestions HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'tests/test_main.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [45401]
+INFO:     Started server process [45520]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:56066 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56068 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56072 - "GET /ai/suggestions HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'tests/test_main.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [45520]
+INFO:     Started server process [45531]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:56196 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56200 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56202 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56332 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56334 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56338 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56458 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56462 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56464 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56587 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56589 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56591 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56716 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56718 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56722 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56846 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56850 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56852 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56974 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56976 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56978 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57101 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57103 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57107 - "GET /ai/suggestions HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'gui.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [45531]
+INFO:     Started server process [45686]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:57231 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57235 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57237 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57362 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57364 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57366 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57478 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57482 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57484 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57486 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57487 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57491 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57493 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57529 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57533 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57535 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57537 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57548 - "GET /vault HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57549 - "GET /transactions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57564 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57573 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57584 - "GET /settings/margins HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57595 - "GET /reports/analytics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57632 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57634 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57638 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57644 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57648 - "GET /reports/pnl HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'gui.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [45686]
+INFO:     Started server process [45941]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'gui.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [45941]
+INFO:     Started server process [46127]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:58714 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58716 - "GET /prices/smart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58720 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58724 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58725 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58727 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58731 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58823 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58827 - "GET /reports/pnl HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58857 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58861 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58863 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58986 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58988 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58992 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59112 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59116 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59118 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59244 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59246 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59248 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59375 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59377 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59381 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59502 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59506 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59508 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59632 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59634 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59638 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59763 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59765 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59769 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59894 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59898 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59900 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60023 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60025 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60029 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60149 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60153 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60155 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60281 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60283 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60285 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60415 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60417 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60422 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60542 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60546 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60548 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60675 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60677 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60679 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60804 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60806 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60810 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60933 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60937 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60939 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61062 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61064 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61068 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61191 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61195 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61197 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61322 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61324 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61326 - "GET /ai/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61451 - "GET /prices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61453 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61457 - "GET /ai/suggestions HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'gui.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [46127]
+INFO:     Started server process [47317]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'gui.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47317]
+INFO:     Started server process [47325]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'gui.py'. Reloading...
+INFO:     127.0.0.1:61578 - "GET /prices HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     127.0.0.1:61582 - "GET /reports/kasa HTTP/1.1" 200 OK
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47325]
+INFO:     Started server process [47336]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:61584 - "GET /ai/suggestions HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/models.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47336]
+Fatal Python error: init_sys_streams: can't initialize sys standard streams
+Python runtime state: core initialized
+OSError: [Errno 9] Bad file descriptor
+
+Current thread 0x00000001fe3ee240 (most recent call first):
+  <no Python frame>
+WARNING:  WatchFiles detected changes in 'app/schemas.py'. Reloading...
+Fatal Python error: init_sys_streams: can't initialize sys standard streams
+Python runtime state: core initialized
+OSError: [Errno 9] Bad file descriptor
+
+Current thread 0x00000001fe3ee240 (most recent call first):
+  <no Python frame>
+WARNING:  WatchFiles detected changes in 'app/main.py'. Reloading...
+Fatal Python error: init_sys_streams: can't initialize sys standard streams
+Python runtime state: core initialized
+OSError: [Errno 9] Bad file descriptor
+
+Current thread 0x00000001fe3ee240 (most recent call first):
+  <no Python frame>
+WARNING:  WatchFiles detected changes in 'gui.py'. Reloading...
+Fatal Python error: init_sys_streams: can't initialize sys standard streams
+Python runtime state: core initialized
+OSError: [Errno 9] Bad file descriptor
+
+Current thread 0x00000001fe3ee240 (most recent call first):
+  <no Python frame>
+WARNING:  WatchFiles detected changes in 'gui.py'. Reloading...
+Fatal Python error: init_sys_streams: can't initialize sys standard streams
+Python runtime state: core initialized
+OSError: [Errno 9] Bad file descriptor
+
+Current thread 0x00000001fe3ee240 (most recent call first):
+  <no Python frame>

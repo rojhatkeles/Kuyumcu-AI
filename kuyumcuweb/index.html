@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuyumcu Pro AI | Modern Kuyumcu Yönetim Sistemi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <nav>
+        <div class="logo">KUYUMCU<span>PRO AI</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Ana Sayfa</a></li>
+            <li><a href="#features">Özellikler</a></li>
+            <li><a href="#security">Güvenlik</a></li>
+            <li><a href="#contact">İletişim</a></li>
+        </ul>
+        <a href="#" class="btn-download-nav">HEMEN İNDİR</a>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="badge">YAPAY ZEKA DESTEKLİ</span>
+            <h1>Dükkanınızı <span>Geleceğe</span> Taşıyın.</h1>
+            <p>Defterleri kapatın, Excel karmaşasına son verin. Kuyumcu Pro AI ile stoktan cari hesaba, borsa
+                verilerinden AI kâr analizine kadar her şey tek ekranda.</p>
+            <div class="hero-btns">
+                <a href="#" class="btn-primary">ÜCRETSİZ DENEYİN</a>
+                <a href="#features" class="btn-secondary">ÖZELLİKLERİ GÖR</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="hero.png" alt="Kuyumcu Pro Dashboard">
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="section-title">
+            <h2>Neden Biz?</h2>
+            <p>Kuyumcuların ihtiyaçları için özel olarak tasarlanmış en akıllı çözüm.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                <h3>Yapay Zekâ Önerileri</h3>
+                <p>Müşteri alışkanlıklarınızı ve dükkan marjlarınızı analiz eden AI, kârlılığınızı artırmanız için size
+                    özel stratejiler önerir.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-vault"></i></div>
+                <h3>Tam Kasa Kontrolü</h3>
+                <p>Altın, Döviz ve TL kasalarınızı saniyeler içinde yönetin. Açılış bakiyelerinden sayım düzeltmelerine
+                    kadar tam hakimiyet.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-user-shield"></i></div>
+                <h3>Güvenli Patron Paneli</h3>
+                <p>Siz dükkanda yokken finansal verileriniz güvende. Sadece dükkan sahibine özel şifreyle açılan detaylı
+                    analiz ekranları.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Anlık Borsa Takibi</h3>
+                <p>Canlı kurlara göre sepetinizi anında hesaplayın. Altın ve döviz fiyatları dükkanınıza saniyeler
+                    içinde yansısın.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-address-book"></i></div>
+                <h3>Gelişmiş Cari Hesap</h3>
+                <p>Veresiye işlemlerini gram veya TL bazlı takip edin. Karmaşık müşteri borç-alacak dengesini AI sizin
+                    için çözsün.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-boxes-stacked"></i></div>
+                <h3>Vitrinden Eksilme</h3>
+                <p>Barkod veya isim bazlı stok takibi. Her satışta ürünler vitrinden otomatik düşer, eksikleri anında
+                    görün.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="security" id="security">
+        <div class="security-box">
+            <i class="fas fa-shield-halved"></i>
+            <h2>Verileriniz %100 Sizin Kontrolünüzde</h2>
+            <p style="margin-top: 20px; color: #bdc3c7;">Kuyumcu Pro AI bir bulut uygulaması değildir (opsiyonel
+                yedekleme hariç). Tüm verileriniz kendi bilgisayarınızda yerel olarak şifrelenir. İnternetiniz olmasa
+                bile çalışmaya devam edersiniz.</p>
+        </div>
+    </section>
+
+    <section class="contact" id="contact" style="padding: 100px 8%; text-align: center;">
+        <div class="section-title">
+            <h2>Bizimle İletişime Geçin</h2>
+            <p>Hemen demo isteyin veya sorularınızı sorun.</p>
+        </div>
+        <form id="contactForm"
+            style="max-width: 600px; margin: 0 auto; background: var(--bg-card); padding: 40px; border-radius: 20px; border: 1px solid var(--border-glass);">
+            <input type="text" name="name" placeholder="Adınız Soyadınız" required
+                style="width: 100%; padding: 12px; margin-bottom: 20px; background: var(--glass); border: 1px solid var(--border-glass); border-radius: 8px; color: #fff;">
+            <input type="email" name="email" placeholder="E-Posta Adresiniz" required
+                style="width: 100%; padding: 12px; margin-bottom: 20px; background: var(--glass); border: 1px solid var(--border-glass); border-radius: 8px; color: #fff;">
+            <textarea name="message" placeholder="Mesajınız..." required
+                style="width: 100%; padding: 12px; margin-bottom: 20px; background: var(--glass); border: 1px solid var(--border-glass); border-radius: 8px; color: #fff; min-height: 120px;"></textarea>
+            <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">MESAJI
+                GÖNDER</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="logo">KUYUMCU<span>PRO AI</span></div>
+        <div class="copyright">© 2026 Kuyumcu Pro AI. Tüm hakları saklıdır.</div>
+        <div class="socials">
+            <a href="#" style="color: #fff; margin-left: 15px;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color: #fff; margin-left: 15px;"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

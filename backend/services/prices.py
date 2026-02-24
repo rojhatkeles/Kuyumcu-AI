@@ -55,6 +55,31 @@ async def fetch_prices_async() -> Dict[str, Any]:
                 "sell": round(gram_has_gold * 0.585 * 1.05, 2)
             }
 
+            # --- ZİYNET ALTINLARI ---
+            # Ziynet altınları adet başı satılır. Ortalamaları Has altına endekslenir.
+            # Çeyrek (1.75g 22k -> 1.6065g Has)
+            base_ceyek_has = 1.6065
+            prices["CEYREK"] = {
+                "buy": round(gram_has_gold * base_ceyek_has * 0.98, 2),
+                "sell": round(gram_has_gold * base_ceyek_has * 1.02, 2)
+            }
+            # Yarım (2x Çeyrek = 3.213g Has)
+            prices["YARIM"] = {
+                "buy": round(gram_has_gold * base_ceyek_has * 2 * 0.98, 2),
+                "sell": round(gram_has_gold * base_ceyek_has * 2 * 1.02, 2)
+            }
+            # Tam - Ziynet Lira (4x Çeyrek = 6.426g Has)
+            prices["TAM"] = {
+                "buy": round(gram_has_gold * base_ceyek_has * 4 * 0.98, 2),
+                "sell": round(gram_has_gold * base_ceyek_has * 4 * 1.02, 2)
+            }
+            # Ata / Cumhuriyet (7.216g 22k -> 6.61g Has)
+            base_ata_has = 6.61
+            prices["ATA"] = {
+                "buy": round(gram_has_gold * base_ata_has * 0.98, 2),
+                "sell": round(gram_has_gold * base_ata_has * 1.02, 2)
+            }
+
         return prices
 
     except Exception as e:

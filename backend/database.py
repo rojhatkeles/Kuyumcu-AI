@@ -7,7 +7,10 @@ load_dotenv()
 
 # Geliştirme kolaylığı için SQLite kullanalım. 
 # Eğer .env içinde başka bir URL tanımlıysa o kullanılır (Örn: PostgreSQL)
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./sql_app.db")
+DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data'))
+os.makedirs(DATA_DIR, exist_ok=True)
+db_path = os.path.join(DATA_DIR, 'sql_app.db')
+DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{db_path}")
 
 # SQLite için check_same_thread=False gereklidir
 if DATABASE_URL.startswith("sqlite"):

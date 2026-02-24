@@ -1,6 +1,22 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional, List
 from datetime import datetime
+
+# --- User ---
+class UserBase(BaseModel):
+    username: str
+    role: Optional[str] = "cashier"
+
+class UserCreate(UserBase):
+    password: str
+
+class UserOut(UserBase):
+    id: int
+    model_config = ConfigDict(from_attributes=True)
+
+class UserLogin(BaseModel):
+    username: str
+    password: str
 
 # --- Instrument ---
 class InstrumentBase(BaseModel):
@@ -12,8 +28,7 @@ class InstrumentCreate(InstrumentBase):
 
 class InstrumentOut(InstrumentBase):
     id: int
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Price ---
 class PriceOut(BaseModel):
@@ -21,8 +36,7 @@ class PriceOut(BaseModel):
     buy: Optional[float]
     sell: Optional[float]
     ts: datetime
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Customer ---
 class CustomerBase(BaseModel):
@@ -39,8 +53,7 @@ class CustomerOut(CustomerBase):
     balance_try: float
     balance_gold: float
     created_at: datetime
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Product ---
 class ProductBase(BaseModel):
@@ -58,8 +71,7 @@ class ProductCreate(ProductBase):
 class ProductOut(ProductBase):
     id: int
     created_at: datetime
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Transaction ---
 class TransactionBase(BaseModel):
@@ -80,8 +92,7 @@ class TransactionCreate(TransactionBase):
 class TransactionOut(TransactionBase):
     id: int
     ts: datetime
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Conversion ---
 class ConvertRequest(BaseModel):
@@ -95,3 +106,6 @@ class ConvertResponse(BaseModel):
     side: str
     result: float
     currency: str = "TRY"
+
+class ActivationRequest(BaseModel):
+    license_key: str

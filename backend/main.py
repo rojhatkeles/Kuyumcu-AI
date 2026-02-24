@@ -5,22 +5,159 @@ from typing import List, Optional
 from datetime import datetime, timedelta, timezone
 import sys
 import os
+import hashlib
+
 
 # Paket yapısını desteklemek için dizin ayarı
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 try:
-    from app.database import Base, engine, get_db
-    from app import models, schemas
-    from app.services.prices import fetch_prices_async
+    from backend.database import Base, engine, get_db, SessionLocal
+    from backend import models, schemas
+    from backend.services.prices import fetch_prices_async
 except ImportError:
-    from database import Base, engine, get_db
+    from database import Base, engine, get_db, SessionLocal
     import models, schemas
     from services.prices import fetch_prices_async
 
 
-Base.metadata.create_all(bind=engine)
-app = FastAPI(title="Kuyumcu Pro Personalized AI", version="8.3.0")
+# --- LICENSE SETTINGS ---
+LICENSE_TIER = "NORMAL"
+
+# --- MIDDLEWARE / UTILS ---
+def check_premium():
+    if LICENSE_TIER != "PREMIUM":
+        raise HTTPException(status_code=402, detail="Bu özellik sadece Kuyumcu Pro Premium üyeleri içindir.")
+    return True
+
+
+def refresh_license_tier():
+    global LICENSE_TIER
+    db = SessionLocal()
+    try:
+        # DB'deki tier'ı al
+        cfg = db.query(models.Config).filter(models.Config.key == "license_tier").first()
+        if not cfg:
+            cfg = models.Config(key="license_tier", value="NORMAL")
+            db.add(cfg); db.commit()
+            LICENSE_TIER = "NORMAL"
+            return
+
+        current_tier = cfg.value
+        
+        # Eğer Premium ise key'i doğrula
+        if current_tier == "PREMIUM":
+            key_cfg = db.query(models.Config).filter(models.Config.key == "license_key").first()
+            if not key_cfg or not key_cfg.value:
+                cfg.value = "NORMAL"
+                db.commit()
+                LICENSE_TIER = "NORMAL"
+            else:
+                # Key var, ama gerçekten geçerli mi? (Offline güven modu: PRO- ile başlamalı)
+                if not key_cfg.value.startswith("PRO-"):
+                    cfg.value = "NORMAL"
+                    db.commit()
+                    LICENSE_TIER = "NORMAL"
+                else:
+                    LICENSE_TIER = "PREMIUM"
+        else:
+            LICENSE_TIER = "NORMAL"
+            
+    except Exception as e:
+        print(f"License check error: {e}")
+        LICENSE_TIER = "NORMAL"
+    finally:
+        db.close()
+
+from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Test ortamında gerçek DB'yi init etme (Deadlock'ı önle)
+    if not os.getenv("TESTING"):
+        Base.metadata.create_all(bind=engine)
+        refresh_license_tier()
+    yield
+
+app = FastAPI(title="Kuyumcu Pro Personalized AI", version="8.3.0", lifespan=lifespan)
+
+
+@app.get("/system/tier")
+def get_tier():
+    return {"tier": LICENSE_TIER}
+
+@app.post("/system/activate")
+def activate_system(req: schemas.ActivationRequest, db: Session = Depends(get_db)):
+    global LICENSE_TIER
+    import requests
+    # WEB SUNUCUSUNA (localhost:8080) SORUYORUZ
+    try:
+        r = requests.get(f"http://127.0.0.1:8080/api/license/verify?key={req.license_key}", timeout=2)
+        if r.status_code == 200:
+            cfg = db.query(models.Config).filter(models.Config.key == "license_tier").first()
+            if not cfg:
+                cfg = models.Config(key="license_tier")
+                db.add(cfg)
+            cfg.value = "PREMIUM"
+            
+            key_cfg = db.query(models.Config).filter(models.Config.key == "license_key").first()
+            if not key_cfg:
+                key_cfg = models.Config(key="license_key")
+                db.add(key_cfg)
+            key_cfg.value = req.license_key
+            db.commit()
+            LICENSE_TIER = "PREMIUM"
+            return {"status": "ok", "message": "Lisans doğrulandı! Premium aktif."}
+        else:
+            raise HTTPException(status_code=400, detail="Geçersiz veya süresi dolmuş lisans anahtarı.")
+    except HTTPException:
+        raise
+    except Exception as e:
+        # Web sunucusu kapalıysa bile localdeki kurala bakabiliriz (Geriye dönük uyumluluk)
+        if req.license_key.startswith("PRO-"):
+            cfg = db.query(models.Config).filter(models.Config.key == "license_tier").first()
+            if not cfg:
+                cfg = models.Config(key="license_tier")
+                db.add(cfg)
+            cfg.value = "PREMIUM"
+            
+            key_cfg = db.query(models.Config).filter(models.Config.key == "license_key").first()
+            if not key_cfg:
+                key_cfg = models.Config(key="license_key")
+                db.add(key_cfg)
+            key_cfg.value = req.license_key
+            db.commit()
+            
+            LICENSE_TIER = "PREMIUM"
+            return {"status": "ok", "message": "Offline doğrulama başarılı! Premium aktif."}
+        raise HTTPException(status_code=500, detail=f"Lisans sunucusuna bağlanılamadı: {e}")
+
+@app.post("/system/sync")
+async def cloud_sync(premium: bool = Depends(check_premium), db: Session = Depends(get_db)):
+    """Dükkan verilerini Bulut (Web) sunucusuna gönderir"""
+    key_cfg = db.query(models.Config).filter(models.Config.key == "license_key").first()
+    if not key_cfg:
+        raise HTTPException(status_code=403, detail="Lisans anahtarı bulunamadı.")
+    
+    # Kasa ve Rapor verilerini topla (Aynı dosyadaki fonksiyonları çağırıyoruz)
+    kasa = await get_kasa(db)
+    daily = await get_daily(db)
+    
+    payload = {
+        "kasa": kasa,
+        "daily_profit": daily["profit"],
+        "tx_count": len(daily["transactions"])
+    }
+    
+    import requests
+    try:
+        r = requests.post(f"http://127.0.0.1:8080/api/sync/report?key={key_cfg.value}", json=payload, timeout=5)
+        if r.status_code == 200:
+            return r.json()
+        else:
+            raise HTTPException(status_code=r.status_code, detail="Web merkezi hata döndürdü.")
+    except Exception as e:
+        raise HTTPException(status_code=503, detail=f"Web merkezine ulaşılamadı (8080 kapalı olabilir): {e}")
 
 # --- SETTINGS / MARGINS ---
 @app.get("/settings/margins")
@@ -47,13 +184,18 @@ def get_vault(db: Session = Depends(get_db)):
 @app.post("/vault/update")
 def update_vault(symbol: str, amount: float, db: Session = Depends(get_db)):
     """Açılış stoğu veya sayım düzeltmesi için dükkan varlığını günceller"""
+    allowed = ["TRY", "USD", "EUR", "GA", "C22", "CEYREK", "YARIM", "TAM", "ATA"]
+    if symbol not in allowed:
+        raise HTTPException(status_code=400, detail=f"Geçersiz sembol: {symbol}")
+
     v = db.query(models.Vault).filter(models.Vault.symbol == symbol).first()
     if not v:
-        v = models.Vault(symbol=symbol)
+        v = models.Vault(symbol=symbol, balance=0.0)
         db.add(v)
-    v.balance = amount
+    v.balance = (v.balance or 0.0) + amount
     db.commit()
-    return v
+    return {"status": "ok", "new_balance": v.balance}
+
 
 # --- PRICE ENGINE ---
 @app.get("/prices/smart")
@@ -62,7 +204,7 @@ async def get_smart_prices(db: Session = Depends(get_db)):
         live = await fetch_prices_async()
         margins = {m.symbol: m for m in db.query(models.Margin).all()}
         res = {}
-        for sym in ["GA", "C22", "USD", "EUR"]:
+        for sym in live.keys():
             d = live.get(sym, {"buy": 0, "sell": 0})
             m = margins.get(sym)
             bm = (m.buy_margin or 0.0) if m else 0.0
@@ -73,9 +215,10 @@ async def get_smart_prices(db: Session = Depends(get_db)):
     except Exception:
         return {"GA": {"suggested_buy": 0, "suggested_sell": 0}}
 
+
 # --- AI ENGINE ---
 @app.get("/ai/suggestions")
-async def get_ai_suggestions(db: Session = Depends(get_db)):
+async def get_ai_suggestions(premium: bool = Depends(check_premium), db: Session = Depends(get_db)):
     """Kullanıcının SON 15 işlemini analiz ederek alışkanlığını yakalar (Stabil Versiyon)"""
     try:
         live = await fetch_prices_async()
@@ -184,7 +327,13 @@ def add_tx(tx: schemas.TransactionCreate, db: Session = Depends(get_db)):
 
 @app.get("/transactions")
 def list_tx(db: Session = Depends(get_db)):
-    return db.query(models.Transaction).order_by(models.Transaction.ts.desc()).all()
+    query = db.query(models.Transaction)
+    
+    if LICENSE_TIER == "NORMAL":
+        seven_days_ago = datetime.now() - timedelta(days=7)
+        query = query.filter(models.Transaction.ts >= seven_days_ago)
+        
+    return query.order_by(models.Transaction.ts.desc()).all()
 
 # --- REPORTS (MULTİ-CASH VALUATION) ---
 @app.get("/reports/kasa")
@@ -232,7 +381,7 @@ async def get_kasa(db: Session = Depends(get_db)):
 
 
 @app.get("/reports/pnl")
-async def get_pnl(db: Session = Depends(get_db)):
+async def get_pnl(premium: bool = Depends(check_premium), db: Session = Depends(get_db)):
     txs, cur = db.query(models.Transaction).all(), await fetch_prices_async()
     total = 0.0
     for t in txs:
@@ -242,8 +391,46 @@ async def get_pnl(db: Session = Depends(get_db)):
         else: total += (ref - t.unit_price) * t.qty
     return {"profit": round(total, 2)}
 
+@app.get("/reports/daily")
+async def get_daily(db: Session = Depends(get_db)):
+    from datetime import date
+    
+    # Bugünün işlemleri (Transaction modelinde ts DateTime tipinde olduğu için bugüne göre filtreleyeceğiz)
+    today_start = date.today().isoformat()
+    # Tüm işlemleri çekip bellekte bugünün tarihini filtreleyelim 
+    # (Daha verimli yöntem veri tabanı filtredir ancak sqlite ile safe olmak için string startswith yapabiliriz)
+    txs_all = db.query(models.Transaction).order_by(models.Transaction.ts.desc()).all()
+    txs = [t for t in txs_all if t.ts and str(t.ts).startswith(today_start)]
+    
+    cur = await fetch_prices_async()
+    daily_profit = 0.0
+    daily_txs = []
+    
+    for t in txs:
+        # Kar/Zarar Hesaplaması
+        m = cur.get(t.symbol or "GA", cur.get("GA", {"buy":0}))
+        ref = m.get("buy") or 0
+        if t.side == "sell": daily_profit += (t.unit_price - ref) * t.qty
+        else: daily_profit += (ref - t.unit_price) * t.qty
+        
+        # Gösterim için işlem objesi
+        daily_txs.append({
+            "ts": t.ts.split("T")[1][:5] if "T" in str(t.ts) else str(t.ts).split(" ")[1][:5] if " " in str(t.ts) else str(t.ts),
+            "side": "SATIŞ" if t.side == "sell" else "ALIŞ",
+            "symbol": t.symbol,
+            "qty": t.qty,
+            "unit_price": t.unit_price,
+            "total_price": t.total_price,
+            "payment_type": t.payment_type
+        })
+        
+    return {
+        "profit": round(daily_profit, 2),
+        "transactions": daily_txs
+    }
+
 @app.get("/reports/analytics")
-def get_analytics(db: Session = Depends(get_db)):
+def get_analytics(premium: bool = Depends(check_premium), db: Session = Depends(get_db)):
     from datetime import datetime, timedelta
     thirty_days_ago = datetime.now() - timedelta(days=30)
     txs = db.query(models.Transaction).filter(models.Transaction.ts >= thirty_days_ago).all()
@@ -292,6 +479,11 @@ def list_customers(db: Session = Depends(get_db)):
 
 @app.post("/customers")
 def create_customer(c: schemas.CustomerCreate, db: Session = Depends(get_db)):
+    if LICENSE_TIER == "NORMAL":
+        count = db.query(models.Customer).count()
+        if count >= 20:
+            raise HTTPException(status_code=402, detail="Cari Limitiniz Doldu (20/20). Sınırsız müşteri kaydı için Kuyumcu Pro Premium'a geçin.")
+            
     db_c = models.Customer(**c.model_dump())
     db.add(db_c); db.commit(); db.refresh(db_c); return db_c
 
@@ -319,7 +511,57 @@ def process_customer_payment(customer_id: int, amount: float, p_type: str, db: S
 async def get_prices():
     return await fetch_prices_async()
 
+# --- USERS / AUTH ---
+def get_password_hash(password: str) -> str:
+    return hashlib.sha256(password.encode()).hexdigest()
+
+@app.post("/users", response_model=schemas.UserOut)
+def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
+    if LICENSE_TIER == "NORMAL":
+        count = db.query(models.User).count()
+        if count >= 1:
+            raise HTTPException(status_code=402, detail="Normal pakette sadece 1 Admin hesabı kullanılabilir. Çoklu personel desteği için Premium lisansa geçin.")
+
+    db_user = db.query(models.User).filter(models.User.username == user.username).first()
+    if db_user:
+        raise HTTPException(status_code=400, detail="Username already registered")
+    
+    hashed_password = get_password_hash(user.password)
+    new_user = models.User(
+        username=user.username,
+        password=hashed_password,
+        role=user.role
+    )
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    return new_user
+
+@app.post("/login")
+def login(user: schemas.UserLogin, db: Session = Depends(get_db)):
+    db_user = db.query(models.User).filter(models.User.username == user.username).first()
+    if not db_user:
+        raise HTTPException(status_code=401, detail="Invalid username or password")
+    
+    if db_user.password != get_password_hash(user.password):
+        raise HTTPException(status_code=401, detail="Invalid username or password")
+        
+    return {"message": "Login successful", "user": {"id": db_user.id, "username": db_user.username, "role": db_user.role}}
+
+@app.get("/users/ensure_admin")
+def ensure_admin(db: Session = Depends(get_db)):
+    # Create default admin if not exists
+    admin = db.query(models.User).filter(models.User.username == "admin").first()
+    if not admin:
+        new_admin = models.User(
+            username="admin",
+            password=get_password_hash("admin123"),
+            role="admin"
+        )
+        db.add(new_admin)
+        db.commit()
+        return {"message": "Default admin created (admin123)"}
+    return {"message": "Admin exists"}
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("app.main:app", host="127.0.0.1", port=8000, reload=True)
-
+    uvicorn.run("backend.main:app", host="127.0.0.1", port=8000, reload=True)

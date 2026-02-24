@@ -4,6 +4,13 @@ from sqlalchemy.orm import relationship
 from .database import Base
 from datetime import datetime
 
+class User(Base):
+    __tablename__ = "users"
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String, unique=True, index=True)
+    password = Column(String)
+    role = Column(String, default="cashier")  # "admin" or "cashier"
+
 class Margin(Base):
     __tablename__ = "margins"
     id = Column(Integer, primary_key=True, index=True)
@@ -75,3 +82,9 @@ class Transaction(Base):
     instrument = relationship("Instrument")
     customer = relationship("Customer", back_populates="transactions")
     product = relationship("Product")
+
+class Config(Base):
+    __tablename__ = "configs"
+    id = Column(Integer, primary_key=True, index=True)
+    key = Column(String, unique=True, index=True)
+    value = Column(String)

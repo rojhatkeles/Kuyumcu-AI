@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuyumcu Pro AI | Boss Uzak Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="boss.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-card">
+            <div class="logo" style="margin-bottom: 30px;">BOSS<span>PANEL</span></div>
+            <p style="color: var(--text-muted); margin-bottom: 25px;">Lütfen lisans anahtarınızı girerek dükkanınıza
+                bağlanın.</p>
+            <input type="password" id="licenseInput" placeholder="PRO-XXXX-XXXX"
+                style="width: 100%; padding: 15px; background: var(--glass); border: 1px solid var(--border-glass); border-radius: 10px; color: #fff; margin-bottom: 20px;">
+            <button onclick="checkBossLicense()" class="btn-primary"
+                style="width: 100%; border: none; cursor: pointer;">DÜKKANA BAĞLAN</button>
+        </div>
+    </div>
+
+    <nav>
+        <div class="logo">KUYUMCU<span>PRO AI</span></div>
+        <div class="status-badge"
+            style="background: rgba(46, 204, 113, 0.2); color: #2ecc71; padding: 5px 15px; border-radius: 20px; font-size: 12px;">
+            CANLI BAĞLANTI AKTİF</div>
+    </nav>
+
+    <div class="boss-container">
+        <h1 style="font-size: 32px; margin-bottom: 10px;">Dükkan Özeti</h1>
+        <p id="syncTime" style="color: var(--text-muted); margin-bottom: 40px;">Son Senkronizasyon: --:--</p>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">GÜNLÜK NET KÂR</div>
+                <div id="profitVal" class="stat-value">0 TL</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">TOPLAM İŞLEM</div>
+                <div id="txCount" class="stat-value">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">LİSANS DURUMU</div>
+                <div id="licenseStatus" class="stat-value" style="font-size: 24px;">AKTİF</div>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 60px; margin-bottom: 20px;">Kasa Detayları (Varlıklar)</h2>
+        <table class="kasa-table">
+            <thead>
+                <tr>
+                    <th>SEMBOL</th>
+                    <th>TOPLAM VARLIK</th>
+                </tr>
+            </thead>
+            <tbody id="kasaBody">
+                <!-- Data will come from server -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        async function checkBossLicense() {
+            const key = document.getElementById('licenseInput').value;
+            if (!key) return;
+
+            try {
+                // Bizim backend'imize soruyoruz, bu key'e ait dükkan verisi var mı?
+                const res = await fetch(`/api/sync/get_latest?key=${key}`);
+                if (res.ok) {
+                    const result = await res.json();
+                    document.getElementById('loginOverlay').style.display = 'none';
+                    updateDashboard(result);
+                } else {
+                    alert('Bu lisana ait aktif bir dükkan verisi bulunamadı.');
+                }
+            } catch (e) {
+                alert('Bağlantı hatası.');
+            }
+        }
+
+        function updateDashboard(report) {
+            const data = report.data;
+            document.getElementById('syncTime').innerText = `Son Senkronizasyon: ${new Date(report.last_sync).toLocaleString()}`;
+            document.getElementById('profitVal').innerText = `${data.daily_profit.toLocaleString()} TL`;
+            document.getElementById('profitVal').style.color = data.daily_profit >= 0 ? '#2ecc71' : '#e74c3c';
+            document.getElementById('txCount').innerText = data.tx_count;
+
+            const body = document.getElementById('kasaBody');
+            body.innerHTML = '';
+            data.kasa.forEach(item => {
+                const row = `<tr><td>${item.symbol}</td><td>${item.balance.toFixed(2)}</td></tr>`;
+                body.innerHTML += row;
+            });
+        }
+    </script>
+</body>
+
+</html>
